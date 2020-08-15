@@ -1,0 +1,41 @@
+spring:
+  profiles:
+    active: db, flow, core, admin,flowmanager
+  messages:
+    encoding: UTF-8
+  session:
+    timeout: 600s
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
+
+server:
+  port: 9910
+#  port: 8820
+  tomcat:
+    basedir: /data/app/upload
+  startJob: true
+  logFilePath: /opt/rdjBianWu/nohup.out
+  logFileRows: 2000
+  servlet:
+    session:
+      timeout: 600s
+
+logging:
+  level:
+    root:  ERROR
+    org.springframework:  ERROR
+    org.mybatis:  ERROR
+    org.java.bi.core:  ERROR
+    org.java.bi.db:  ERROR
+    org.java.bi.admin:  ERROR
+    org.java.bi:  ERROR
+mybatis:
+  config-location: classpath:/META-INF/mybatis-config.xml
+  configuration-properties:
+    blobType: BLOB
+    boolValue: true
+    prefix: ''
+  mapper-locations: classpath:/META-INF/dragon-mybatis-mappings/*/xml/*.xml,classpath:/META-INF/modeler-mybatis-mappings/*.xml
+

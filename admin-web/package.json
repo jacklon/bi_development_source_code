@@ -1,0 +1,122 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "lint": "vue-cli-service lint",
+    "inspect": "vue-cli-service inspect",
+    "build-client": "vue-cli-service --max_old_space_size=8192 build ",
+    "dev": "vue-cli-service --max_old_space_size=8192 serve ",
+    "doc-build": "vuepress build vuedoc",
+    "doc-dev": "vuepress dev vuedoc",
+    "lib:pc": "vue-cli-service build --target lib --name page-engine --dest server/public/engin_libs/pc engine-template/engine-pc/index.js",
+    "prd": "p2 start server/bin/www"
+  },
+  "dependencies": {
+    "@antv/data-set": "^0.11.1",
+    "@antv/g2": "^4.0.2",
+    "@jiaminghi/data-view": "^2.8.3",
+    "@tinymce/tinymce-vue": "1.1.0",
+    "@vuepress/shared-utils": "^1.4.1",
+    "animate.css": "3.7.2",
+    "axios": "^0.19.0",
+    "better-scroll": "^1.15.2",
+    "core-js": "^2.6.5",
+    "echarts": "^4.3.0",
+    "element-ui": "^2.12.0",
+    "html2canvas": "1.0.0-rc.5",
+    "js-cookie": "2.2.0",
+    "lodash": "^4.17.15",
+    "markdown-it-emoji": "^1.4.0",
+    "monaco-editor": "^0.20.0",
+    "monaco-editor-webpack-plugin": "^1.9.0",
+    "qrcode.vue": "1.7.0",
+    "socket.io-client": "^2.3.0",
+    "sql-formatter": "^2.3.3",
+    "svg-sprite-loader": "3.9.2",
+    "svgo": "1.0.5",
+    "three": "^0.114.0",
+    "toml": "^3.0.0",
+    "vue": "^2.6.10",
+    "vue-class-component": "^7.0.2",
+    "vue-cropper": "0.4.9",
+    "vue-draggable-resizable-gorkys": "^2.3.6",
+    "vue-json-viewer": "^2.2.8",
+    "vue-property-decorator": "^8.1.0",
+    "vue-router": "^3.1.3",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "any-template-compiler": "^0.1.7",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-component": "^1.1.1",
+    "body-parser": "^1.19.0",
+    "compression-webpack-plugin": "3.0.1",
+    "crypto-js": "3.1.9-1",
+    "dom-to-image": "^2.6.0",
+    "eslint": "^5.16.0",
+    "eslint-plugin-vue": "^5.0.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "koa": "2.11.0",
+    "koa-body": "4.1.1",
+    "koa-cors": "0.0.16",
+    "koa-ejs": "4.3.0",
+    "koa-jwt": "3.6.0",
+    "koa-router": "7.4.0",
+    "koa-static": "5.0.0",
+    "koa2-cors": "2.0.6",
+    "mockjs": "^1.0.1-beta3",
+    "moment": "^2.24.0",
+    "mongoose": "^5.7.5",
+    "mssql": "^5.1.0",
+    "mysql": "^2.17.1",
+    "node-sass": "^4.9.2",
+    "nprogress": "0.2.0",
+    "object-hash": "^2.0.0",
+    "objectid-to-timestamp": "^1.3.0",
+    "oracledb": "^4.0.1",
+    "pg": "^7.12.1",
+    "pg-then": "^1.2.1",
+    "psd": "3.2.0",
+    "request": "2.88.0",
+    "sass-loader": "^7.1.0",
+    "sha1": "^1.1.1",
+    "socket.io": "^2.3.0",
+    "sqlstring": "^2.3.1",
+    "stylus": "^0.54.7",
+    "stylus-loader": "^3.0.2",
+    "vue-cli-plugin-element": "~1.0.1",
+    "vue-clipboard2": "0.3.1",
+    "vue-draggable-resizable": "^2.0.1",
+    "vue-server-renderer": "^2.6.10",
+    "vue-svg-icon": "^1.2.9",
+    "vue-swiper-component": "2.1.3",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {
+      "no-console": "off"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

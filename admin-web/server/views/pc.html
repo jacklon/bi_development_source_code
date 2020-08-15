@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" name="viewport">
+  <meta name="keywords" content="">
+  <meta name="description" content="">
+  <meta name="renderer" content="webkit">
+  <meta name="robots" content="index, follow">
+  <meta name="format-detection" content="telephone=no">
+
+  <script src="/third-libs/vue.js"></script>
+  <script src="/engin_libs/pc/page-engine.umd.js"></script>
+  <link  rel="stylesheet" type="text/css" href="/engin_libs/pc/page-engine.css">
+
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    html, body, #app{
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+  </style>
+  <script>
+	  window._projectInfo = <%- JSON.stringify(projectInfo) %>
+  </script>
+</head>
+<body>
+<div id="app">
+  <show-data></show-data>
+</div>
+<script>
+  new Vue({
+	  el:"#app"
+  })
+</script>
+
+</body>
+</html>

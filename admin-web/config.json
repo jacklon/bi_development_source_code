@@ -1,0 +1,14 @@
+{
+    "port":"4000",
+    "adminAccount":"admin",
+    "db":{
+        "servername":"localhost",
+        "DATABASE":"admin",
+        "port":27017,
+        "user":"root",
+        "pass":"root",
+        "authSource":"admin"
+    },
+    "devBaseUri":"http://localhost:9910/admin",
+    "prdBaseUri":"http://localhost:9910/admin"
+}

@@ -1,0 +1,83 @@
+pagehelper:
+  helperDialect:  mysql
+  reasonable: false
+  supportMethodsArguments:  true
+  params: count=countSql
+
+#spring:
+#  datasource:
+#    druid:
+#      initial-size: 10
+#      max-active: 40
+#      max-pool-prepared-statement-per-connection-size: 20
+#      max-wait: 60000
+#      min-evictable-idle-time-millis: 300000
+#      min-idle: 5
+#      pool-prepared-statements: true
+#      test-on-borrow: false
+#      test-on-return: false
+#      test-while-idle: true
+#      time-between-eviction-runs-millis: 60000
+#      url: jdbc:mysql://123.57.181.101:3306/bianwu?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+#      username: root
+#      password: zxtMySql007
+#      validation-query: SELECT 'x'
+mybatis:
+  config-location: classpath:/META-INF/mybatis-config.xml
+  mapUnderscoreToCamelCase: true
+
+spring:
+  ssh2:
+    if-load: false
+    proxy-host: 47.95.205.103
+    proxy-port: 22
+    proxy-user: root
+    proxy-password: 200318rdjERP
+    dest-host: rm-2zegi47bkhg943qy6.mysql.rds.aliyuncs.com
+    dest-port: 3306
+    local-port: 3307
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+
+
+    url: jdbc:mysql://127.0.0.1:3306/bi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false
+    username: root
+    password: Citic12345
+
+
+
+#    url: jdbc:mysql://39.101.177.102:3306/bi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true
+#    username: etc
+#    password: GuiZhouETC@2020
+
+   #    本机服务器
+
+#    url: jdbc:mysql://localhost:3306/bi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
+#    username: root
+#    password: Citic12345
+
+#    国创拍卖服务器(不带数据可清空)
+#    url: jdbc:mysql://123.57.181.101:3306/bianwu_shidaitianhua?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true
+#    username: root
+#    password: zxtMySql007
+
+#    国创拍卖服务器(荣德基数据)
+#    url: jdbc:mysql://123.57.181.101:3306/rdj-erp_200318?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true
+#    username: root
+#    password: zxtMySql007
+
+#    荣德基教育测试服务器
+#    url: jdbc:mysql://rm-2zegi47bkhg943qy6.mysql.rds.aliyuncs.com:3306/bianwu_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true
+#    username: rdjerp
+#    password: rdj200318ERP
+
+    hikari:
+      auto-commit: true
+      connection-test-query: 'SELECT '
+      connection-timeout: 30000 #等待连接池分配连接的最大时长（毫秒），超过这个时长还没可用的连接则发生SQLException， 缺省:30秒
+      idle-timeout: 600000 #一个连接idle状态的最大时长（毫秒），超时则被释放（retired），缺省:10分钟
+      max-lifetime: 1765000 #一个连接的生命时长（毫秒），超时而且没被使用则被释放（retired），缺省:30分钟，建议设置比数据库超时时长少30秒以上
+      maximum-pool-size: 15 #连接池中允许的最大连接数。缺省值：10；推荐的公式：((core_count * 2) + effective_spindle_count)
+#      minimum-idle: ''
+      pool-name: DatebookHikariCP

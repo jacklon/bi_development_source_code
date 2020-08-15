@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+
+    <context id="mysqlgenerator" targetRuntime="MyBatis3">
+        <property name="autoDelimitKeywords" value="true"/>
+        <!--可以使用``包括字段名，避免字段名与sql保留字冲突报错-->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <!-- 自动生成toString方法 -->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <!-- 自动生成equals方法和hashcode方法 -->
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+
+        <!-- 非官方插件 https://github.com/itfsw/mybatis-generator-plugin -->
+        <!-- 查询单条数据插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectOneByExamplePlugin"/>
+        <!-- 查询结果选择性返回插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.SelectSelectivePlugin"/>
+        <!-- Example Criteria 增强插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ExampleEnhancedPlugin"/>
+        <!-- 数据Model属性对应Column获取插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.ModelColumnPlugin"/>
+        <!-- 逻辑删除插件 -->
+        <plugin type="com.itfsw.mybatis.generator.plugins.LogicalDeletePlugin">
+            <!-- 这里配置的是全局逻辑删除列和逻辑删除值，当然在table中配置的值会覆盖该全局配置 -->
+            <!-- 逻辑删除列类型只能为数字、字符串或者布尔类型 -->
+            <property name="logicalDeleteColumn" value="deleted"/>
+            <!-- 逻辑删除-已删除值 -->
+            <property name="logicalDeleteValue" value="1"/>
+            <!-- 逻辑删除-未删除值 -->
+            <property name="logicalUnDeleteValue" value="0"/>
+        </plugin>
+
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <!--<property name="suppressAllComments" value="true"/>-->
+        </commentGenerator>
+
+        <!--数据库连接信息-->
+<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+<!--                        connectionURL="jdbc:mysql://127.0.0.1:3307/rdj-erp_200318?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;verifyServerCertificate=false&amp;useSSL=false"-->
+<!--                        userId="rdjerp"-->
+<!--                        password="rdj200318ERP"/>-->
+<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+<!--                        connectionURL="jdbc:mysql://rm-2zegi47bkhg943qy6.mysql.rds.aliyuncs.com:3306/rdj-erp_200318?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;verifyServerCertificate=false&amp;useSSL=false"-->
+<!--                        userId="rdjerp"-->
+<!--                        password="rdj200318ERP"/>-->
+
+<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+<!--                        connectionURL="jdbc:mysql://59.110.222.88:3306/rdj-erp_200318?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;verifyServerCertificate=false&amp;useSSL=false"-->
+<!--                        userId="root"-->
+<!--                        password="root"/>-->
+
+                <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                                connectionURL="jdbc:mysql://127.0.0.1:3306/bi?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;verifyServerCertificate=false&amp;useSSL=false"
+                                userId="root"
+                                password="Citic12345"/>
+
+<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
+<!--                        connectionURL="jdbc:mysql://123.57.181.101:3306/rdj-erp_200318?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true"-->
+<!--                        userId="root"-->
+<!--                        password="zxtMySql007"/>-->
+        <javaTypeResolver>
+            <property name="useJSR310Types" value="true"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetPackage="org.java.bi.db.domain" targetProject="src/main/java"/>
+        <sqlMapGenerator targetPackage="org.java.bi.db.dao" targetProject="src/main/resources"/>
+        <javaClientGenerator type="XMLMAPPER" targetPackage="org.java.bi.db.dao"
+                             targetProject="src/main/java"/>
+        <!--表名-->
+        <table tableName="b_dic_main">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="b_dic_code">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="b_dic_tree_main">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="b_dic_tree_code">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="b_corp_info">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="dept_id_string" javaType="java.lang.String[]"
+                            typeHandler="org.java.bi.db.mybatis.JsonStringArrayTypeHandler"/>
+        </table>
+        <table tableName="sys_interface_monitor">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="sys_opadmin_def">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="sys_opadmin_pub">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="sys_opadmin_info">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="sys_bi_user">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="dept_id_string" javaType="java.lang.String[]"
+                            typeHandler="org.java.bi.db.mybatis.JsonStringArrayTypeHandler"/>
+            <columnOverride column="role_ids" javaType="java.lang.Integer[]"
+                            typeHandler="org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler"/>
+            <columnOverride column="mobile_role_ids" javaType="java.lang.Integer[]"
+                            typeHandler="org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler"/>
+        </table>
+        <table tableName="sys_user_field_priv">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+         </table>
+
+        <table tableName="sys_set">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="sys_role_menu">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="sys_bi_menu">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="sys_bi_role">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="sys_storage">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="sys_log">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="sys_table_desp">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+            <columnOverride column="olt_unique_field_names" javaType="java.lang.String[]"
+                            typeHandler="org.java.bi.db.mybatis.JsonStringArrayTypeHandler"/>
+            <columnOverride column="olt_unique_field_deps" javaType="java.lang.String[]"
+                            typeHandler="org.java.bi.db.mybatis.JsonStringArrayTypeHandler"/>
+        </table>
+        <table tableName="sys_table_field_desp">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <table tableName="sys_operation_log">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+        <!-- 以下是集成时间任务quartz -->
+        <table tableName="sys_quartz_task_manage">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+
+        <table tableName="view_role_menu">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+        <table tableName="view_table_def">
+            <columnOverride column="table_comment" javaType="java.lang.String" jdbcType="VARCHAR" />
+        </table>
+        <table tableName="view_table_field_def">
+            <columnOverride column="column_comment" javaType="java.lang.String" jdbcType="VARCHAR" />
+            <columnOverride column="field_default" javaType="java.lang.String" jdbcType="VARCHAR" />
+        </table>
+    </context>
+</generatorConfiguration>

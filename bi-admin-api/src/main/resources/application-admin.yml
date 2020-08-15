@@ -1,0 +1,13 @@
+bath:
+  path: http://localhost:9090
+management:
+  endpoint:
+    health:
+      roles: access-admin
+      show-details: when_authorized
+  endpoints:
+    jmx:
+      unique-names: true
+    web:
+      exposure:
+        include: '*'

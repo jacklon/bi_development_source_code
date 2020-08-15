@@ -1,0 +1,57 @@
+.m-header
+  width 100%
+  height 50px
+  line-height 50px
+  background #00002B;
+  filter opacity(90%)
+  display flex
+  webkit-box-shadow: 0 1px 4px 0 rgba(0,0,0,.08);
+  box-shadow: 0 1px 4px 0 rgba(0,0,0,.08);
+  .m-logo_wrapper
+    width 65px
+    height 50px
+    display flex
+    justify-content: center
+    align-items:  center
+    cursor pointer
+    font-size 20px
+    color rgb(89,89,89)
+    &:hover
+      background: rgb(230,242,255)
+  .right-menu
+    width 100%
+    height 100%
+    line-height 50px
+    display flex
+    justify-content: flex-end
+    &focus
+      outline none
+    .right-menu-item
+      display inline-block
+      padding 0 8px
+      height 100%
+      font-size 18px
+      color #fff
+      vertical-align text-bottom
+      &.hover-effect 
+        cursor pointer
+        transition background .3s
+        &hover 
+          background rgba(0, 0, 0, .025)
+    .avatar-container 
+      margin-right 30px
+      .avatar-wrapper 
+        margin-top 10px
+        position relative
+        .user-avatar 
+          cursor pointer
+          width 30px
+          height 30px
+          border-radius 50%
+          background #fff
+        .el-icon-caret-bottom 
+          cursor pointer
+          position absolute
+          right -15px
+          top 15px
+          font-size 12px

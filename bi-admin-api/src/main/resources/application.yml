@@ -1,0 +1,24 @@
+spring:
+  profiles:
+    active: db, core, admin
+  messages:
+    encoding: UTF-8
+  multipart:
+    location: /storage
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 1000MB
+  redis:
+    host: 127.0.0.1
+    port: 6379
+server:
+  port: 8083
+
+logging:
+  level:
+    root:  ERROR
+    org.springframework:  ERROR
+    org.mybatis:  ERROR
+    org.java.bi.admin:  DEBUG
+    org.java.bi:  ERROR
