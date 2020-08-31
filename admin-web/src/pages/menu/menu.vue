@@ -1,100 +1,210 @@
 <template>
-    <div class="page menu" :class="{'menu-list_collapsed' : isCollapsed }" v-loading="loading">
-        <div class="menu-logo_wrap">
-<!--            <img src="../logo.svg" class="menu-logo"/>-->
-            <div class="menu-title">
-                <div class="menu-main_title">劲远BI</div>
-                <div class="menu-sub_title">do want you do </div>
+    <div style="display: flex;height: 100%">
+        <div class="page menu" :class="{'menu-list_collapsed' : isCollapsed }" v-loading="loading">
+            <div class="menu-list_wrap">
+                <!-- 展开和隐藏按钮 -->
+                <div class="narrow-wrapper" @click="changeUnfoldStatus(1)" v-if="!isCollapsed">
+                    <img src='./menu-left.svg' />
+                </div>
+                <div class="narrow-wrapper" @click="changeUnfoldStatus(0)" v-else>
+                    <img src='./menu-right.svg' />
+                </div>
+                <!-- 展开和隐藏按钮 END -->
+                <ul class="menu-list_main_wrap">
+                    <li class="menu-list_main" v-for="item in menuList" :title="item.name" :key="item.id"  @click="onMenuClick(item)" >
+                        <router-link :to="{path: item.path}" class="menu-list_link" >
+                            <div class="menu-list_item"  :class="{'menu-list_item_active': item.id === activeIndex}"   :data-index="item.id">
+                                <el-tooltip placement="right-start" v-if="isCollapsed&&item.children.length>0"  :visible-arrow="false" popper-class="sub-menu">
+                                    <div slot="content">
+                                        <ul class="menu-list-subitem_collapse">
+                                            <li class="menu-list-sub"
+                                                v-for="subitem in item.children"
+                                                :key="subitem.id"
+                                                :data-index="subitem.id"
+                                                :class="{'menu-list_item_active': subitem.id === activeSubIndex}"
+                                                @click="onSubMenuClick(subitem.id)">
+                                                <span><i class={subitem.icon}></i></span>{{subitem.name}}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <i class="el-icon-s-platform el-icon-lefts" />
+                                </el-tooltip>
+                                <i class="el-icon-lefts" :class="item.icon" v-else/>
+                                <div class="menu-list_item_title">{{item.name}}</div>
+
+                                <i v-if="item.children!=null&&item.children.length>0&&item.firstMenuOpen==false" class="el-icon-arrow-down el-icon-rights" style="margin-right: 3px"></i>
+                                <i v-if="item.children!=null&&item.children.length>0&&item.firstMenuOpen==true" class="el-icon-arrow-up el-icon-rights" style="margin-right: 3px"></i>
+                            </div>
+                        </router-link>
+                        <ul class="menu-list_sub_wrap" v-show="item.id === activeIndex">
+                            <li class="menu-list-sub"
+                                v-for="subitem in subMenuList"
+                                :key="subitem.id"
+                                :data-index="subitem.id"
+                                @click.stop="onSubMenuClick(subitem)">
+                                <router-link :to="{path: subitem.path}" class="menu-list_link">
+                                    <div class="menu-list-subitem" :class="{'menu-list_item_subactive': subitem.id === activeSubIndex}" >
+                                        <div class="menu-list_item_subtitle">
+                                            <span style="margin-right: 2px">
+                                            <i :class="subitem.icon==null?'':subitem.icon" ></i>
+                                            </span>{{subitem.name}}
+                                        </div>
+                                        <div>
+                                            <i  v-if="subitem.children!=null&&subitem.children.length>0" class="el-icon-arrow-right el-icon-rights"></i>
+                                        </div>
+
+                                    </div>
+                                </router-link>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="sub-bar" v-if="thirdSubMenuList!=null&&thirdSubMenuList.length>0">
+
+            <div class="sub-header-title">{{submenuTitle}}</div>
+            <div class="sub-menu-list">
+                <ul class="menu-list_sub_wrap" >
+                    <li class="menu-list-sub"
+                        v-for="(thirdItem,index) in thirdSubMenuList"
+                        :key="index"
+                        :data-index="thirdItem.id"
+                        @click="onThirdMenuClick(thirdItem)">
+                        <router-link :to="thirdItem.path" :key="index" class="menu-list_link">
+
+                            <div class="sub-menu-item" :class="{'sub-menu-item-active': thirdItem.id === activeThirdIndex}" >
+                                <div class="menu-list_item_subtitle">
+                                    <span style="margin-right: 2px">
+                                    <i :class="thirdItem.icon==null?'':thirdItem.icon" ></i>
+                                    </span>{{thirdItem.name}}
+                                </div>
+
+                            </div>
+
+                        </router-link>
+                    </li>
+                </ul>
             </div>
         </div>
-        <div class="menu-list_wrap">
-            <ul class="menu-list_main_wrap">
-
-                <li class="menu-list_main" v-for="item in menuList" :title="item.title" :key="item.id" @click="onMenuClick(item.id)">
-
-                    <router-link :to="{path: item.routerPath}" class="menu-list_link">
-                        <div class="menu-list_item"  :class="{'menu-list_item_active': item.id === activeIndex}"   :data-index="item.id">
-                            <el-tooltip placement="right-start" v-if="isCollapsed&&item.children.length>0"  :visible-arrow="false" popper-class="sub-menu">
-                                <div slot="content">
-                                    <ul class="menu-list-subitem_collapse">
-                                        <li class="menu-list-sub"
-                                            v-for="subitem in item.children"
-                                            :key="subitem.id"
-
-                                            :data-index="subitem.id"
-                                            :class="{'menu-list_item_active': subitem.id === activeSubIndex}"
-                                            @click="onSubMenuClick(subitem.id)"
-                                        >
-                                            {{subitem.name}}
-                                        </li>
-                                    </ul>
-                                </div>
-                                <i class="el-icon-s-platform el-icon-lefts" />
-                            </el-tooltip>
-                            <i class="el-icon-lefts" :class="item.iconClass" v-else/>
-                            <div class="menu-list_item_title">{{item.name}}</div>
-                            <i class="el-icon-arrow-down el-icon-rights"></i>
-                        </div>
-                    </router-link>
-                    <ul class="menu-list_sub_wrap" v-show="item.id === activeIndex">
-                        <li class="menu-list-sub"
-                            v-for="subitem in item.children"
-                            :key="subitem.id"
-                            :data-index="subitem.id"
-                            @click="onSubMenuClick(subitem.id)"
-                        >
-                            <router-link :to="{path: subitem.routerPath}" class="menu-list_link">
-                                <div class="menu-list-subitem" :class="{'menu-list_item_subactive': subitem.id === activeSubIndex}">
-                                    <div class="menu-list_item_subtitle">{{subitem.name}}</div>
-                                </div>
-                            </router-link>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
     </div>
+
+
+
+
+
 </template>
 
 <script>
 export default {
     data(){
         return {
+            isCollapsed: false, //判断展开还是隐藏一级菜单,
+            unfoldItemMenuIndex: 0, //判断展开还是隐藏一个菜单列表
+
+            isShowMainMenu: false,
             loading:false,
             activeIndex: 1,
+
+
             activeSubIndex: -1,
-            menuList:[]
+            activeThirdIndex: -1,
+            menuList:[],
+            hideSubMenu:false,
+            submenuTitle:'',
+            subMenuList:[],
+            thirdSubMenuList:[]
         }
     },
     props:{
         collapsed:Boolean
     },
     computed:{
-        isCollapsed(){
-            return this.collapsed
-        }
+        // isCollapsed(){
+        //     return this.collapsed
+        // }
     },
     mounted(){
-        this.loading = true;
-        this.$axios.get('/menus/info').then(res => {
-            this.loading = false;
-            if (res.body) {
-                this.menuList = res.body
-            }
-        }).catch(() => {
-            this.loading = false;
+        // this.loading = true;
+        this.menuList=this.$store.getters.menus;
+        this.menuList.forEach(item=>{
+            item["firstMenuOpen"]=false;
         })
+        // this.$axios.get('/menus/info').then(res => {
+        //     this.loading = false;
+        //     if (res.body) {
+        //         this.menuList = res.body
+        //     }
+        // }).catch(() => {
+        //     this.loading = false;
+        // })
     },
     methods:{
-        onMenuClick(index){
-            if(this.activeIndex !== index){
-                this.activeIndex = index
+        changeUnfoldStatus(code) {
+            if (code == 1) {
+                this.isCollapsed = true;
+                sessionStorage.setItem("isCollapsed", "1");
+            } else {
+                this.isCollapsed = false;
+                sessionStorage.setItem("isCollapsed", "0");
             }
         },
-        onSubMenuClick(index){
-            if(this.activeSubIndex !== index){
-                this.activeSubIndex = index
+        onCollapsed(){
+            this.$emit('collapsed')
+        },
+        onMenuClick(item){
+            //清空第三级菜单
+            this.activeThirdIndex=-1
+            this.thirdSubMenuList=[]
+            //将当前点击菜单赋给一级菜单Index
+            if(this.activeIndex !== item.id){
+                this.activeIndex = item.id
             }
+            //判断一级菜单是否已经展开
+            if(item.children!=null&&item.children.length>0){
+                //如果当前菜单没有展开，则向二级菜单赋值展开
+                if(item.firstMenuOpen==false){
+                    this.subMenuList=item.children
+                    //将不等于当前菜单的其它菜单展开标记设置成false
+                    this.menuList.forEach(firstLevel=>{
+                        if(firstLevel.id!=item.id){
+                            firstLevel["firstMenuOpen"]=false;
+                        }
+                    })
+                } else
+                {
+                    //设置当前子菜单为空
+                    this.subMenuList=[]
+                }
+            }
+            item.firstMenuOpen=!item.firstMenuOpen
+        },
+        onSubMenuClick(subMenu){
+            this.activeThirdIndex=-1
+            if(this.activeSubIndex !== subMenu.id){
+                this.activeSubIndex = subMenu.id
+            }
+            if(subMenu.children!=null&&subMenu.children.length>0){
+                this.submenuTitle=subMenu.name;
+                this.thirdSubMenuList=[...subMenu.children]
+
+                //通过push进行跳转
+                this.$router.push('/blank')
+            } else
+            {
+                this.activeThirdIndex=-1
+                this.thirdSubMenuList=[]
+
+            }
+
+        },
+        onThirdMenuClick(thirdMenu){
+            if(this.activeThirdIndex !== thirdMenu.id){
+                this.activeThirdIndex = thirdMenu.id
+            }
+
+
         }
     }
 }
@@ -124,46 +234,12 @@ export default {
     }
     .menu{
         width:140px;
-        /**
-        *  品牌标识logo
-        **/
-        .menu-logo_wrap{
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 10px;
-            height: 35px;
-            .menu-logo{
-                height: 100%;
-                width:34px;
-            }
-            .menu-title{
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                height: 31px;
-                color: white;
-                margin-left: 10px;
-                .menu-main_title{
-                    font-size: 16px;
-                    font-family:"youdu" !important;
-                    font-style:normal;
-                    -webkit-font-smoothing: antialiased;
-                    -webkit-text-stroke-width: 0.2px;
-                    -moz-osx-font-smoothing: grayscale;
-                }
-                .menu-sub_title{
-                    font-size: 8px;
-                    font-family:"youdu" !important;
-                }
-            }
-        }
+
         /**
         *  菜单栏
         **/
         .menu-list_wrap{
-            margin-top:10px;
+
             .menu-list_main_wrap{
                 .menu-list_main{
                     display:flex;
@@ -224,11 +300,14 @@ export default {
                     }
                     .menu-list_sub_wrap{
                         width:100%;
+                        text-align:center;
                         .menu-list-sub{
+                            text-align:center;
                             .menu-list-subitem{
                                 display:flex;
                                 flex-direction: row;
                                 align-items:center;
+                                justify-content:space-between;
                                 width:100%;
                                 height:50px;
                                 line-height: 50px;
@@ -296,6 +375,126 @@ export default {
                 color: white;
                 animation: none;
             }
+        }
+    }
+    .sub-bar {
+        overflow:hidden;
+        width: 150px;
+        height: 100%;
+        transition: width 0.2s;
+        background: #0fbda0;
+        position: relative;
+        .sub-fold-wrapper {
+            width: 20px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #f7f7f7;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            margin: auto 0;
+            .sub-fold-icon {
+                font-size: 16px;
+                color: #546478;
+            }
+        }
+        .sub-unfold-wrapper {
+            width: 20px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            background: #d9dee4;
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            z-index: 2;
+            margin: auto 0;
+            .sub-unfold-icon {
+                font-size: 16px;
+                color: #546478;
+            }
+        }
+        .sub-header-title {
+            display:flex;
+            justify-content:center;
+            line-height: 30px;
+            background: #0fbda0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-weight: 600;
+            font-size: 12px;
+            /*text-indent: 20px;*/
+            box-sizing: border-box;
+        }
+        .sub-menu-list {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            box-sizing: border-box;
+            overflow-y: auto;
+            text-align: center;
+            .sub-menu-item {
+                display: block;
+                height: 40px;
+                line-height: 40px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                /*text-indent: 20px;*/
+                color:#fff;
+                font-size: 14px;
+            }
+            .sub-menu-item:hover {
+                background: #1f83ff;
+                /*background: #2c3e50;*/
+            }
+
+
+            .sub-menu-item-active  {
+                /*background: #fff;*/
+                color:#fff;
+                background: #2c3e50;
+            }
+        }
+    }
+
+    .narrow-wrapper {
+        width: 100%;
+        height: 30px;
+        background: #4a5064;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        .narrow-icon {
+            font-size: 12px;
+            color: #aeafa7;
+        }
+    }
+    .narrow-wrapper:hover .narrow-icon {
+        color: #fff;
+    }
+
+    .m-logo_wrapper {
+        width 65px
+        height 50px
+        display flex
+        justify-content: center
+        align-items: center
+        cursor pointer
+        font-size 20px
+        color rgb(89, 89, 89)
+        background: #4a5064;
+        &:hover {
+            background: rgb(230, 242, 255)
         }
     }
 </style>

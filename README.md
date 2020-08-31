@@ -90,32 +90,7 @@ ClickHouse：解决列式存储和计算问题
     
    
 ## 开发计划
-
-当前版本[v1.3.0](https://linlinjava.gitbook.io/litemall/changelog)
-
-目前项目开发中，存在诸多不足，以下是目前规划的开发计划。
-
-V 1.0.0 完成以下目标：
-
-1. 除了部分功能（如优惠券等），小商城的优化和改进基本结束；
-2. 管理后台基本实现所有表的CRUD操作；
-3. 后端服务能够对参数进行检验。
-
-V 2.0.0 完成以下目标：
-
-1. 小商城和管理后台完成所有基本业务；
-2. 管理后台实现统计功能、日志功能、权限功能；
-3. 业务代码和细节代码进行调整优化；
-4. 轻商城的开发；
-
-V 3.0.0 完成以下目标：
-
-1. 管理后台一些辅助功能
-2. 后端服务加强安全功能、配置功能
-3. 缓存功能以及优化一些性能
-
-
-   
+ 
 ## 问题
  
 //注册组件
@@ -130,28 +105,10 @@ SELECT * FROM INFORMATION_SCHEMA.INNODB_TRX;
 kill 81431
 
 
-问题描述：
-Unexpected end of JSON input while parsing near '…"
+ 
 
-解决办法：
-（1）npm install --registry=https://registry.npm.taobao.org --loglevel=silly
-（2） npm cache clean --force
-（3） npm install
-
-在创建getPY函数时要先执行下面的语句
-set global log_bin_trust_function_creators=TRUE;
-SHOW  VARIABLES LIKE 'innodb_flush_log_at_trx_commit' ;
---加快数据写入速度
-SET GLOBAL innodb_flush_log_at_trx_commit =0;
---恢复安全写入速度
-SET GLOBAL innodb_flush_log_at_trx_commit =1;
-
-将mysql数据库高版本导入到低版本时要更新替换的类型如下:
-datetime(0) datetime
-datetime(3) datetime
-datetime(6) datetime
-timestamp(3) timestamp
-CURRENT_TIMESTAMP(3) CURRENT_TIMESTAMP
-utf8mb4_0900_ai_ci utf8mb4_unicode_ci
+原设计器有一个错误，导致图形显示问题：
+好像是canvas-panel.vue文件中:className="item.uuid === activeElementUUID? 
+'actived': 'noActived'影响的。  把className改成classNameActive
 
 

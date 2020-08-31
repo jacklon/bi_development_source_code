@@ -20,8 +20,8 @@
     <result column="dept_id_string" jdbcType="VARCHAR" property="deptIdString" typeHandler="org.java.bi.db.mybatis.JsonStringArrayTypeHandler" />
     <result column="dept_name" jdbcType="VARCHAR" property="deptName" />
     <result column="stop_flag" jdbcType="BIT" property="stopFlag" />
-    <result column="data_dept_ids" jdbcType="VARCHAR" property="dataDeptIds" />
-    <result column="data_dept_string" jdbcType="VARCHAR" property="dataDeptString" />
+    <result column="data_dept_ids" jdbcType="VARCHAR" property="dataDeptIds" typeHandler="org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler" />
+    <result column="data_dept_string" jdbcType="VARCHAR" property="dataDeptString" typeHandler="org.java.bi.db.mybatis.JsonStringArrayTypeHandler" />
     <result column="tenant_id" jdbcType="INTEGER" property="tenantId" />
     <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
     <result column="add_by" jdbcType="VARCHAR" property="addBy" />
@@ -114,6 +114,44 @@
                 </when>
               </choose>
             </foreach>
+            <foreach collection="criteria.dataDeptIdsCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler} and #{criterion.secondValue,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.dataDeptStringCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler} and #{criterion.secondValue,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
           </trim>
         </if>
       </foreach>
@@ -186,6 +224,44 @@
               </choose>
             </foreach>
             <foreach collection="criteria.deptIdStringCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler} and #{criterion.secondValue,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.dataDeptIdsCriteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler} and #{criterion.secondValue,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+            <foreach collection="criteria.dataDeptStringCriteria" item="criterion">
               <choose>
                 <when test="criterion.noValue">
                   and ${criterion.condition}
@@ -354,18 +430,20 @@
       mobile_role_ids, 
       dept_id, dept_id_string, 
       dept_name, stop_flag, data_dept_ids, 
-      data_dept_string, tenant_id, add_time, 
-      add_by, update_time, update_by, 
-      deleted)
+      data_dept_string, 
+      tenant_id, add_time, add_by, 
+      update_time, update_by, deleted
+      )
     values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{lastLoginIp,jdbcType=VARCHAR}, 
       #{lastLoginTime,jdbcType=TIMESTAMP}, #{avatar,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
       #{telphone,jdbcType=VARCHAR}, #{roleIds,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler}, 
       #{mobileRoleIds,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler}, 
       #{deptId,jdbcType=INTEGER}, #{deptIdString,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler}, 
-      #{deptName,jdbcType=VARCHAR}, #{stopFlag,jdbcType=BIT}, #{dataDeptIds,jdbcType=VARCHAR}, 
-      #{dataDeptString,jdbcType=VARCHAR}, #{tenantId,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, 
-      #{addBy,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, 
-      #{deleted,jdbcType=BIT})
+      #{deptName,jdbcType=VARCHAR}, #{stopFlag,jdbcType=BIT}, #{dataDeptIds,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler}, 
+      #{dataDeptString,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler}, 
+      #{tenantId,jdbcType=INTEGER}, #{addTime,jdbcType=TIMESTAMP}, #{addBy,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{updateBy,jdbcType=VARCHAR}, #{deleted,jdbcType=BIT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="org.java.bi.db.domain.SysBiUser">
     <!--
@@ -482,10 +560,10 @@
         #{stopFlag,jdbcType=BIT},
       </if>
       <if test="dataDeptIds != null">
-        #{dataDeptIds,jdbcType=VARCHAR},
+        #{dataDeptIds,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler},
       </if>
       <if test="dataDeptString != null">
-        #{dataDeptString,jdbcType=VARCHAR},
+        #{dataDeptString,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler},
       </if>
       <if test="tenantId != null">
         #{tenantId,jdbcType=INTEGER},
@@ -567,10 +645,10 @@
         stop_flag = #{record.stopFlag,jdbcType=BIT},
       </if>
       <if test="record.dataDeptIds != null">
-        data_dept_ids = #{record.dataDeptIds,jdbcType=VARCHAR},
+        data_dept_ids = #{record.dataDeptIds,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler},
       </if>
       <if test="record.dataDeptString != null">
-        data_dept_string = #{record.dataDeptString,jdbcType=VARCHAR},
+        data_dept_string = #{record.dataDeptString,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler},
       </if>
       <if test="record.tenantId != null">
         tenant_id = #{record.tenantId,jdbcType=INTEGER},
@@ -615,8 +693,8 @@
       dept_id_string = #{record.deptIdString,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler},
       dept_name = #{record.deptName,jdbcType=VARCHAR},
       stop_flag = #{record.stopFlag,jdbcType=BIT},
-      data_dept_ids = #{record.dataDeptIds,jdbcType=VARCHAR},
-      data_dept_string = #{record.dataDeptString,jdbcType=VARCHAR},
+      data_dept_ids = #{record.dataDeptIds,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler},
+      data_dept_string = #{record.dataDeptString,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler},
       tenant_id = #{record.tenantId,jdbcType=INTEGER},
       add_time = #{record.addTime,jdbcType=TIMESTAMP},
       add_by = #{record.addBy,jdbcType=VARCHAR},
@@ -674,10 +752,10 @@
         stop_flag = #{stopFlag,jdbcType=BIT},
       </if>
       <if test="dataDeptIds != null">
-        data_dept_ids = #{dataDeptIds,jdbcType=VARCHAR},
+        data_dept_ids = #{dataDeptIds,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler},
       </if>
       <if test="dataDeptString != null">
-        data_dept_string = #{dataDeptString,jdbcType=VARCHAR},
+        data_dept_string = #{dataDeptString,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler},
       </if>
       <if test="tenantId != null">
         tenant_id = #{tenantId,jdbcType=INTEGER},
@@ -719,8 +797,8 @@
       dept_id_string = #{deptIdString,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler},
       dept_name = #{deptName,jdbcType=VARCHAR},
       stop_flag = #{stopFlag,jdbcType=BIT},
-      data_dept_ids = #{dataDeptIds,jdbcType=VARCHAR},
-      data_dept_string = #{dataDeptString,jdbcType=VARCHAR},
+      data_dept_ids = #{dataDeptIds,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler},
+      data_dept_string = #{dataDeptString,jdbcType=VARCHAR,typeHandler=org.java.bi.db.mybatis.JsonStringArrayTypeHandler},
       tenant_id = #{tenantId,jdbcType=INTEGER},
       add_time = #{addTime,jdbcType=TIMESTAMP},
       add_by = #{addBy,jdbcType=VARCHAR},

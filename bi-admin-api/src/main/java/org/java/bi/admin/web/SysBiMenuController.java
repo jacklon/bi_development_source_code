@@ -140,22 +140,26 @@ public class SysBiMenuController {
             SysBiMenu litemallMenu= menuService.findById(parentId);
             menu.setLevel(litemallMenu.getLevel()+1);
         }
-        if(menu.getPath()==null){
-            //当前路径为上一级路径+本级路径
-            Integer parentMenuId=  menu.getParentId();
-            if(parentMenuId==null){
-                menu.setPath(menu.getHref());
-            } else
-            {
-                SysBiMenu parentMenu=  menuService.findById(parentMenuId);
-                if(parentMenu.getHref().startsWith("/")) {
-                    menu.setPath(parentMenu.getHref() + "/" + menu.getHref());
-                } else
-                {
-                    menu.setPath("/"+parentMenu.getHref() + "/" + menu.getHref());
-                }
-            }
-        }
+//        if(menu.getPath()==null){
+//            //当前路径为上一级路径+本级路径
+//            Integer parentMenuId=  menu.getParentId();
+//            if(parentMenuId==null){
+//                menu.setPath(menu.getHref());
+//            } else
+//            {
+//                SysBiMenu parentMenu=  menuService.findById(parentMenuId);
+//                if(parentMenu!=null) {
+//                    if (parentMenu.getHref().startsWith("/")) {
+//                        menu.setPath(parentMenu.getHref() + "/" + menu.getHref());
+//                    } else {
+//                        menu.setPath("/" + parentMenu.getHref() + "/" + menu.getHref());
+//                    }
+//                } else
+//                {
+//                    menu.setPath("/" + menu.getHref());
+//                }
+//            }
+//        }
         menu.setAddBy(GetCurrentUser.getCurrentUserName());
         menu.setUpdateBy(GetCurrentUser.getCurrentUserName());
         menuService.add(menu);

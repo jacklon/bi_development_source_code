@@ -48,6 +48,7 @@ router.get('/verify/:_id/:token', async ctx=>{
 router.get('/myProjects', async ctx=>{
     let author=ctx.state.user._id
     ctx.body=await Project.find({author: author}).ne('isTemplate',true)
+
 })
 
 router.post('/modifyName/:_id', async ctx=>{

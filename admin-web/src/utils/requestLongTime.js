@@ -2,11 +2,12 @@ import axios from 'axios'
 import { Message, MessageBox } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
-import configObj from "../config";
+import mysqlConfigObj from "../config/mysqlDbServer";
+
 
 // create an axios instance
 const service = axios.create({
-  baseURL:configObj.baseURL, // api 的 base_url
+    baseURL:mysqlConfigObj.baseURL, // api 的 base_url
   timeout: 300000 // request timeout 设置5分钟
 })
 

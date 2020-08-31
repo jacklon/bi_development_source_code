@@ -640,3 +640,229 @@ img {
   overflow-x: auto;
 }
 
+//main-container全局样式
+.app-container {
+  padding: 20px;
+  background: rgb(23,27,34);
+  color: #fff;
+  overflow: auto;
+}
+
+.el-table {
+  position: relative;
+  overflow: hidden;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-box-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  width: 100%;
+  max-width: 100%;
+  background-color: #171b22;
+  font-size: 14px;
+  color: #606266;
+}
+
+.el-table th {
+  overflow: hidden;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #171b22;
+  color: #fff;
+}
+
+.filter-container {
+  padding-bottom: 10px;
+  display: flex;
+}
+.el-card {
+  border-radius: 4px;
+  border: 1px solid #EBEEF5;
+  background-color: #303640;
+  overflow: hidden;
+  color: #303133;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+}
+.el-dialog {
+  position: relative;
+  margin: 0 auto 50px;
+  background: #303640;
+  border-radius: 2px;
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 50%;
+}
+.el-dialog__title {
+  line-height: 18px;
+  font-size: 14px;
+  color: #fff;
+}
+
+.el-input__inner {
+  -webkit-appearance: none;
+  //background-color: #FFFFFF;
+  background: #1c222b;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #DCDFE6;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  color: #a1aeb3;
+  display: inline-block;
+  font-size: inherit;
+  height: 30px;
+  line-height: 30px;
+  outline: none;
+  padding: 0 15px;
+  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  width: 100%;
+  &.focus,&:hover{
+    border: 1px solid #2681ff;
+  }
+}
+
+.el-form-item__label {
+  text-align: right;
+  vertical-align: middle;
+  float: left;
+  font-size: 10px;
+  color: #fff;
+  line-height: 40px;
+  padding: 0 12px 0 0;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.el-select-dropdown {
+  position: absolute;
+  z-index: 1001;
+  border: solid 1px #E4E7ED;
+  border-radius: 4px;
+  background-color: #1c222b;
+  -webkit-box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 5px 0;
+}
+
+.el-textarea__inner {
+  display: block;
+  resize: vertical;
+  padding: 5px 15px;
+  line-height: 1.5;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  font-size: inherit;
+  color: #a1aeb3;
+  background-color: #1c222b;
+  background-image: none;
+  border: 1px solid #DCDFE6;
+  border-radius: 4px;
+  -webkit-transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+.el-table{
+  color: #fff;
+}
+
+
+.el-table__body tr.current-row > td {
+  background-color: #1f83ff;
+}
+.el-table tr {
+  background-color: #1c222b;
+  &.focus,&:hover{
+
+    background: #1f83ff;
+  }
+}
+
+.el-table__body tr.hover-row {
+  &, &.el-table__row--striped {
+    &, &.current-row {
+      > td {
+        color: #1f83ff;
+        background-color: #1f83ff;
+      }
+    }
+  }
+}
+
+tr.current-row > td {
+  background-color: #1f83ff;
+}
+.el-table__body tr:hover > td {
+  background-color: #1f83ff;
+}
+
+.el-table tbody tr:hover>td {
+  background-color:#1f83ff!important
+}
+
+.el-card{
+  border:none;
+}
+
+.pagination-container{
+  background: #434b55;
+}
+.el-pagination__total
+{
+  color:#fff;
+}
+.el-pagination__jump
+{
+  color:#fff;
+}
+.el-pagination.is-background .btn-prev, .el-pagination.is-background .btn-next, .el-pagination.is-background .el-pager li {
+  background: #25A589;
+}
+
+/* 鼠标悬浮的当前节点  */
+.el-tree-node__content:hover {
+  background: #1f83ff!important;
+}
+/* 点击后的当前节点的样式 */
+.el-tree-node.is-current > .el-tree-node__content {
+  background: #1f83ff;
+  color:  #bcc9d4;
+}
+
+.el-tree {
+  background: rgb(28, 34, 43);
+  color: #bcc9d4;
+}
+
+.el-cascader{
+  line-height: 30px;
+}
+.el-cascader .el-input .el-input__inner {
+  background: rgb(28, 34, 43);
+  color: #bcc9d4;
+  height: 30px;
+  line-height: 30px;
+  font-size: 12px;
+  width: 100%;
+
+}
+.el-cascader-menu__list {
+  background: rgb(28, 34, 43);
+  color: #bcc9d4;
+  height: 30px;
+  width: 500px;
+}
+
+.el-dialog__body {
+  padding: 10px 10px;
+  color: #606266;
+  font-size: 14px;
+  word-break: break-all;
+}

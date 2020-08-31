@@ -31,12 +31,12 @@
 
 <script>
 import TreeStore from './model/tree-store'
-import emitter from 'common/js/mixins/emitter'
+import emitter from '../../../common/js/mixins/emitter'
 import { getNodeKey,findNearestComponent } from './model/util'
 import LkTreeNode from './tree-node.vue'
-import { addClassName,removeClassName } from 'common/js/dom'
+import { addClassName,removeClassName } from '../../../common/js/dom'
 export default {
-    name: 'LkTree',
+    name: 'YTree',
     mixins: [emitter],
     components:{
         LkTreeNode

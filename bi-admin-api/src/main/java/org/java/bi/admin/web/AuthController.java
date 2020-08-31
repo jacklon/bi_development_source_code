@@ -20,6 +20,7 @@ import org.java.bi.core.util.IpUtil;
 import org.java.bi.core.util.JacksonUtil;
 import org.java.bi.core.util.ResponseUtil;
 
+import org.java.bi.db.domain.SysBiMenu;
 import org.java.bi.db.domain.SysBiUser;
 import org.java.bi.db.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,7 +124,13 @@ public class AuthController {
         SysBiUser admin = (SysBiUser) currentUser.getPrincipal();
 
         Map<String, Object> data = new HashMap<>();
-        data.put("userId", admin.getId());
+
+        if (((SysBiUser) currentUser.getPrincipal()).getUsername().equals("AdminSys")) {
+            data.put("userId", "AdminSys");
+        } else
+        {
+            data.put("userId", admin.getId());
+        }
         data.put("deptId", admin.getDeptId());
         data.put("deptIdString", admin.getDeptIdString());
         data.put("deptName", admin.getDeptName());
@@ -150,6 +157,40 @@ public class AuthController {
         if (ifAdminRole||admin.getUsername().equals("AdminSys")) {
             //加载所有菜单
             List<MenuClassVo> menus= sysBiMenuController.getMenuList(null,null);
+
+            SysBiMenu menuPath= sysBiMenuService.getMenuByPath("/menuSet");
+
+            if(menus.size()==0||menuPath==null){
+                //增加设置菜单初如化功能
+                MenuClassVo initMenu=new MenuClassVo();
+                initMenu.setId(0);
+                initMenu.setLevel(1);
+                initMenu.setCode("sysManage");
+//                initMenu.setComponent("@/pages/sys/sysManage/menu");
+                initMenu.setPath("");
+                initMenu.setName("系统管理");
+
+                MenuClassVo subMenu=new MenuClassVo();
+                subMenu.setId(1);
+                subMenu.setLevel(2);
+                subMenu.setCode("menu");
+                subMenu.setComponent("@/pages/sys/sysManage/menu");
+                subMenu.setPath("/menu");
+                subMenu.setName("菜单管理");
+
+//                subMenu.setCode("threejsCreate");
+//                subMenu.setComponent("@/pages/home/threejs-create");
+//                subMenu.setPath("/threejs-create");
+//                subMenu.setName("菜单管理");
+
+                List<MenuClassVo> subMenuList=new ArrayList<>();
+                subMenuList.add(subMenu);
+
+                initMenu.setChildren(subMenuList);
+
+                menus.add(initMenu);
+                data.put("userId", "AdminSys");
+            }
             data.put("menus", menus);
         } else {
             List<Map<String, Object>> thirdLevelMenus = rolemenuService.getMenuRoleViewBySql(Arrays.asList(roleIds), null, null, null, null);

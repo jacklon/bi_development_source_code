@@ -75,7 +75,7 @@
     </div>
 </template>
 <script type="text/jsx">
-import emitter from 'common/js/mixins/emitter'
+import emitter from '../../../common/js/mixins/emitter'
 import { getNodeKey } from './model/util'
 export default {
     name:'LkTreeNode',

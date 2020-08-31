@@ -111,6 +111,10 @@
                             typeHandler="org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler"/>
             <columnOverride column="mobile_role_ids" javaType="java.lang.Integer[]"
                             typeHandler="org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler"/>
+            <columnOverride column="data_dept_ids" javaType="java.lang.Integer[]"
+                            typeHandler="org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler"/>
+            <columnOverride column="data_dept_string" javaType="java.lang.String[]"
+                            typeHandler="org.java.bi.db.mybatis.JsonStringArrayTypeHandler"/>
         </table>
         <table tableName="sys_user_field_priv">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>

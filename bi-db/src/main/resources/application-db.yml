@@ -41,7 +41,7 @@ spring:
     type: com.zaxxer.hikari.HikariDataSource
 
 
-    url: jdbc:mysql://127.0.0.1:3306/bi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false
+    url: jdbc:mysql://127.0.0.1:3306/bi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: Citic12345
 

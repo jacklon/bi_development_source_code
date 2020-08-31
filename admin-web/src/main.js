@@ -9,6 +9,7 @@ import config from '@/config'
 import filters from './filter/index'
 import AES from '@/common/js/secret'
 import userModel from '@src/mixins/userModel'
+
 // 将自动注册所有组件为全局组件
 import dataV from '@jiaminghi/data-view'
 
@@ -32,6 +33,7 @@ import './common/fonts/iconfont.css'
 
 import vdr from 'vue-draggable-resizable-gorkys'
 import 'vue-draggable-resizable-gorkys/dist/VueDraggableResizable.css'
+
 
 Vue.component('vdr', vdr)
 

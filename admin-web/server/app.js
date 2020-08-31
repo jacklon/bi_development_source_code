@@ -53,9 +53,15 @@ if(process.argv.slice(2).length > 0 && process.argv.slice(2)[0] === '--productio
 
 router.use(async (ctx,next)=>{
     let token = ctx.headers.authorization
-    if(token){
-        ctx.state.user = jsonwebtoken.verify(token.split(' ')[1],SECRET)
-    }
+    // if(token){
+    //     ctx.state.user = jsonwebtoken.verify(token.split(' ')[1],SECRET)
+    // }
+    ctx.state.user= {
+        name: 'lizs',
+        _id: '5e05c392375ca54b4c9e4d51',
+        iat: 1597824778,
+        exp: 1597911178
+    },
     ctx.state.BASE_URL = $config.baseURL
     ctx.state.ROOT_PATH = path.join(__dirname,'../')
     ctx.state.SERVER_PATH = path.join(__dirname,'./')

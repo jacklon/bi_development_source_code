@@ -3,10 +3,10 @@ import $config from '../../config'
 
 const configDict={
     development:{
-        baseURL:$config.devBaseUri
+        baseURL:$config.devMongoDbServerBaseUri
     },
     production:{
-        baseURL:$config.prdBaseUri
+        baseURL:$config.prdMongoDbServerBaseUri
     }
 }
 

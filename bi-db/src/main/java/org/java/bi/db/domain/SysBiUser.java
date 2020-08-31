@@ -156,7 +156,7 @@ public class SysBiUser {
      *
      * @mbg.generated
      */
-    private String dataDeptIds;
+    private Integer[] dataDeptIds;
 
     /**
      *
@@ -165,7 +165,7 @@ public class SysBiUser {
      *
      * @mbg.generated
      */
-    private String dataDeptString;
+    private String[] dataDeptString;
 
     /**
      *
@@ -565,7 +565,7 @@ public class SysBiUser {
      *
      * @mbg.generated
      */
-    public String getDataDeptIds() {
+    public Integer[] getDataDeptIds() {
         return dataDeptIds;
     }
 
@@ -577,7 +577,7 @@ public class SysBiUser {
      *
      * @mbg.generated
      */
-    public void setDataDeptIds(String dataDeptIds) {
+    public void setDataDeptIds(Integer[] dataDeptIds) {
         this.dataDeptIds = dataDeptIds;
     }
 
@@ -589,7 +589,7 @@ public class SysBiUser {
      *
      * @mbg.generated
      */
-    public String getDataDeptString() {
+    public String[] getDataDeptString() {
         return dataDeptString;
     }
 
@@ -601,7 +601,7 @@ public class SysBiUser {
      *
      * @mbg.generated
      */
-    public void setDataDeptString(String dataDeptString) {
+    public void setDataDeptString(String[] dataDeptString) {
         this.dataDeptString = dataDeptString;
     }
 
@@ -819,8 +819,8 @@ public class SysBiUser {
             && (Arrays.equals(this.getDeptIdString(), other.getDeptIdString()))
             && (this.getDeptName() == null ? other.getDeptName() == null : this.getDeptName().equals(other.getDeptName()))
             && (this.getStopFlag() == null ? other.getStopFlag() == null : this.getStopFlag().equals(other.getStopFlag()))
-            && (this.getDataDeptIds() == null ? other.getDataDeptIds() == null : this.getDataDeptIds().equals(other.getDataDeptIds()))
-            && (this.getDataDeptString() == null ? other.getDataDeptString() == null : this.getDataDeptString().equals(other.getDataDeptString()))
+            && (Arrays.equals(this.getDataDeptIds(), other.getDataDeptIds()))
+            && (Arrays.equals(this.getDataDeptString(), other.getDataDeptString()))
             && (this.getTenantId() == null ? other.getTenantId() == null : this.getTenantId().equals(other.getTenantId()))
             && (this.getAddTime() == null ? other.getAddTime() == null : this.getAddTime().equals(other.getAddTime()))
             && (this.getAddBy() == null ? other.getAddBy() == null : this.getAddBy().equals(other.getAddBy()))
@@ -853,8 +853,8 @@ public class SysBiUser {
         result = prime * result + (Arrays.hashCode(getDeptIdString()));
         result = prime * result + ((getDeptName() == null) ? 0 : getDeptName().hashCode());
         result = prime * result + ((getStopFlag() == null) ? 0 : getStopFlag().hashCode());
-        result = prime * result + ((getDataDeptIds() == null) ? 0 : getDataDeptIds().hashCode());
-        result = prime * result + ((getDataDeptString() == null) ? 0 : getDataDeptString().hashCode());
+        result = prime * result + (Arrays.hashCode(getDataDeptIds()));
+        result = prime * result + (Arrays.hashCode(getDataDeptString()));
         result = prime * result + ((getTenantId() == null) ? 0 : getTenantId().hashCode());
         result = prime * result + ((getAddTime() == null) ? 0 : getAddTime().hashCode());
         result = prime * result + ((getAddBy() == null) ? 0 : getAddBy().hashCode());

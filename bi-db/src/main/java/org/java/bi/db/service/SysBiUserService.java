@@ -35,7 +35,7 @@ public class SysBiUserService {
 
     public Map<String, Object> querySelective(String username,String telphone,Boolean stopFlag,List<Integer[]> roleIds,
                                               List deptIds, Integer page, Integer limit, String sort) {
-        String strSql="select sql_calc_found_rows * from litemall_admin where deleted=0 ";
+        String strSql="select sql_calc_found_rows * from sys_bi_user where deleted=0 ";
         String condition="";
         if (!StringUtils.isEmpty(username)) {
             condition+=" and (username like '%"+username+"%' or getPY(username) like '%"+username+"%')";
@@ -74,6 +74,11 @@ public class SysBiUserService {
         Integer count=(Integer) param.get("total");
 //        List<Map<String, Object>> convertResult=new ArrayList<>();
         LinkedList<Map<String, Object>> convertResult=new LinkedList();
+        //转驼峰命名法
+        for(Map<String, Object> row:dataList) {
+            Map<String, Object> mapRow = MapConvertCamel.toReplaceKeyLow(row);
+            convertResult.add(mapRow);
+        }
 
         Map<String, Object> result=new HashMap<>();
         result.put("data",convertResult);

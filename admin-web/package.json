@@ -7,6 +7,7 @@
     "inspect": "vue-cli-service inspect",
     "build-client": "vue-cli-service --max_old_space_size=8192 build ",
     "dev": "vue-cli-service --max_old_space_size=8192 serve ",
+    "mongoDbServer": "node server/app.js --production",
     "doc-build": "vuepress build vuedoc",
     "doc-dev": "vuepress dev vuedoc",
     "lib:pc": "vue-cli-service build --target lib --name page-engine --dest server/public/engin_libs/pc engine-template/engine-pc/index.js",
@@ -44,7 +45,10 @@
     "vue-json-viewer": "^2.2.8",
     "vue-property-decorator": "^8.1.0",
     "vue-router": "^3.1.3",
-    "vuex": "^3.1.1"
+    "vuex": "^3.1.1",
+    "xlsx": "^0.11.16",
+    "file-saver": "1.3.8",
+    "script-loader": "0.7.2"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",

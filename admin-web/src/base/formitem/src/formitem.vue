@@ -1,7 +1,9 @@
 <template>
     <div class="ui-formitem" :class="[align,popper]" :style="{height: height === 'auto' ? 'auto': height + 'px'}">
-        <div class="ui-formitem_title" :style="{width: width + 'px'}" v-if="align === 'leftToRight'">{{title}}</div>
+
+        <div class="ui-formitem_title" :style="{width: width + 'px'}" v-if="align === 'leftToRight'"><span v-if="ifMustInput" class="red">*</span>{{title}}</div>
         <div class="ui-formitem_title" :style="{width: '100%', cursor: 'pointer'}" v-else @click="onClickHeader">
+            <span v-if="ifMustInput" class="red">*</span>
             <span>{{title}}</span><i :class="showContent ? 'el-icon-arrow-up': 'el-icon-arrow-down'" v-show="!this.staticTitle"></i>
         </div>
         <div class="ui-formitem_content" v-show="align === 'leftToRight'? true : showContent">
@@ -41,6 +43,10 @@ export default {
         staticTitle:{
             type: Boolean,
             default: false
+        },
+        ifMustInput:{
+            type: Boolean,
+            default: false
         }
     },
     mounted(){
@@ -49,7 +55,7 @@ export default {
     methods:{
         onClickHeader(){
             if(this.staticTitle) return
-            this.showContent = ! this.showContent 
+            this.showContent = ! this.showContent
         }
     }
 }

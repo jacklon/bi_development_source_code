@@ -8,6 +8,8 @@ import powereditor from './modules/powereditor'
 import image from './modules/image'
 import getters from './getters'
 
+import permission from './modules/permission'
+
 import { Message } from 'element-ui'
 import tagsView from './modules/tagsView'
 /**
@@ -47,6 +49,7 @@ export default new Vuex.Store({
 		image,
 		app,
 		tagsView,
+		permission
 	}
 });
 

@@ -11,7 +11,7 @@ module.exports = {
     pages:{
         index:{
             entry:'src/main.js',
-            template:'public/engine-h5-long.html',
+            // template:'public/engine-h5-long.html',
             filename:'index.html'
         }
     },

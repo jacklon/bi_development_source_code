@@ -8,6 +8,7 @@
   }
 </script>
 <style lang="scss">
+
   html,body{
     position: relative;
     height: 100%;
@@ -24,4 +25,5 @@
     position: relative;
     height: 100%;
   }
+
 </style>

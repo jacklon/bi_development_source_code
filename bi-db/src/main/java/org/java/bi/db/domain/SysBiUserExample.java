@@ -204,6 +204,10 @@ public class SysBiUserExample {
 
         protected List<Criterion> deptIdStringCriteria;
 
+        protected List<Criterion> dataDeptIdsCriteria;
+
+        protected List<Criterion> dataDeptStringCriteria;
+
         protected List<Criterion> allCriteria;
 
         protected List<Criterion> criteria;
@@ -214,6 +218,8 @@ public class SysBiUserExample {
             roleIdsCriteria = new ArrayList<Criterion>();
             mobileRoleIdsCriteria = new ArrayList<Criterion>();
             deptIdStringCriteria = new ArrayList<Criterion>();
+            dataDeptIdsCriteria = new ArrayList<Criterion>();
+            dataDeptStringCriteria = new ArrayList<Criterion>();
         }
 
         public List<Criterion> getRoleIdsCriteria() {
@@ -276,11 +282,53 @@ public class SysBiUserExample {
             allCriteria = null;
         }
 
+        public List<Criterion> getDataDeptIdsCriteria() {
+            return dataDeptIdsCriteria;
+        }
+
+        protected void addDataDeptIdsCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            dataDeptIdsCriteria.add(new Criterion(condition, value, "org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addDataDeptIdsCriterion(String condition, Integer[] value1, Integer[] value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            dataDeptIdsCriteria.add(new Criterion(condition, value1, value2, "org.java.bi.db.mybatis.JsonIntegerArrayTypeHandler"));
+            allCriteria = null;
+        }
+
+        public List<Criterion> getDataDeptStringCriteria() {
+            return dataDeptStringCriteria;
+        }
+
+        protected void addDataDeptStringCriterion(String condition, Object value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            dataDeptStringCriteria.add(new Criterion(condition, value, "org.java.bi.db.mybatis.JsonStringArrayTypeHandler"));
+            allCriteria = null;
+        }
+
+        protected void addDataDeptStringCriterion(String condition, String[] value1, String[] value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            dataDeptStringCriteria.add(new Criterion(condition, value1, value2, "org.java.bi.db.mybatis.JsonStringArrayTypeHandler"));
+            allCriteria = null;
+        }
+
         public boolean isValid() {
             return criteria.size() > 0
                 || roleIdsCriteria.size() > 0
                 || mobileRoleIdsCriteria.size() > 0
-                || deptIdStringCriteria.size() > 0;
+                || deptIdStringCriteria.size() > 0
+                || dataDeptIdsCriteria.size() > 0
+                || dataDeptStringCriteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
@@ -290,6 +338,8 @@ public class SysBiUserExample {
                 allCriteria.addAll(roleIdsCriteria);
                 allCriteria.addAll(mobileRoleIdsCriteria);
                 allCriteria.addAll(deptIdStringCriteria);
+                allCriteria.addAll(dataDeptIdsCriteria);
+                allCriteria.addAll(dataDeptStringCriteria);
             }
             return allCriteria;
         }
@@ -2280,8 +2330,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsEqualTo(String value) {
-            addCriterion("data_dept_ids =", value, "dataDeptIds");
+        public Criteria andDataDeptIdsEqualTo(Integer[] value) {
+            addDataDeptIdsCriterion("data_dept_ids =", value, "dataDeptIds");
             return (Criteria) this;
         }
 
@@ -2297,8 +2347,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsNotEqualTo(String value) {
-            addCriterion("data_dept_ids <>", value, "dataDeptIds");
+        public Criteria andDataDeptIdsNotEqualTo(Integer[] value) {
+            addDataDeptIdsCriterion("data_dept_ids <>", value, "dataDeptIds");
             return (Criteria) this;
         }
 
@@ -2314,8 +2364,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsGreaterThan(String value) {
-            addCriterion("data_dept_ids >", value, "dataDeptIds");
+        public Criteria andDataDeptIdsGreaterThan(Integer[] value) {
+            addDataDeptIdsCriterion("data_dept_ids >", value, "dataDeptIds");
             return (Criteria) this;
         }
 
@@ -2331,8 +2381,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsGreaterThanOrEqualTo(String value) {
-            addCriterion("data_dept_ids >=", value, "dataDeptIds");
+        public Criteria andDataDeptIdsGreaterThanOrEqualTo(Integer[] value) {
+            addDataDeptIdsCriterion("data_dept_ids >=", value, "dataDeptIds");
             return (Criteria) this;
         }
 
@@ -2348,8 +2398,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsLessThan(String value) {
-            addCriterion("data_dept_ids <", value, "dataDeptIds");
+        public Criteria andDataDeptIdsLessThan(Integer[] value) {
+            addDataDeptIdsCriterion("data_dept_ids <", value, "dataDeptIds");
             return (Criteria) this;
         }
 
@@ -2365,8 +2415,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsLessThanOrEqualTo(String value) {
-            addCriterion("data_dept_ids <=", value, "dataDeptIds");
+        public Criteria andDataDeptIdsLessThanOrEqualTo(Integer[] value) {
+            addDataDeptIdsCriterion("data_dept_ids <=", value, "dataDeptIds");
             return (Criteria) this;
         }
 
@@ -2382,33 +2432,33 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsLike(String value) {
-            addCriterion("data_dept_ids like", value, "dataDeptIds");
+        public Criteria andDataDeptIdsLike(Integer[] value) {
+            addDataDeptIdsCriterion("data_dept_ids like", value, "dataDeptIds");
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsNotLike(String value) {
-            addCriterion("data_dept_ids not like", value, "dataDeptIds");
+        public Criteria andDataDeptIdsNotLike(Integer[] value) {
+            addDataDeptIdsCriterion("data_dept_ids not like", value, "dataDeptIds");
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsIn(List<String> values) {
-            addCriterion("data_dept_ids in", values, "dataDeptIds");
+        public Criteria andDataDeptIdsIn(List<Integer[]> values) {
+            addDataDeptIdsCriterion("data_dept_ids in", values, "dataDeptIds");
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsNotIn(List<String> values) {
-            addCriterion("data_dept_ids not in", values, "dataDeptIds");
+        public Criteria andDataDeptIdsNotIn(List<Integer[]> values) {
+            addDataDeptIdsCriterion("data_dept_ids not in", values, "dataDeptIds");
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsBetween(String value1, String value2) {
-            addCriterion("data_dept_ids between", value1, value2, "dataDeptIds");
+        public Criteria andDataDeptIdsBetween(Integer[] value1, Integer[] value2) {
+            addDataDeptIdsCriterion("data_dept_ids between", value1, value2, "dataDeptIds");
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptIdsNotBetween(String value1, String value2) {
-            addCriterion("data_dept_ids not between", value1, value2, "dataDeptIds");
+        public Criteria andDataDeptIdsNotBetween(Integer[] value1, Integer[] value2) {
+            addDataDeptIdsCriterion("data_dept_ids not between", value1, value2, "dataDeptIds");
             return (Criteria) this;
         }
 
@@ -2422,8 +2472,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringEqualTo(String value) {
-            addCriterion("data_dept_string =", value, "dataDeptString");
+        public Criteria andDataDeptStringEqualTo(String[] value) {
+            addDataDeptStringCriterion("data_dept_string =", value, "dataDeptString");
             return (Criteria) this;
         }
 
@@ -2439,8 +2489,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringNotEqualTo(String value) {
-            addCriterion("data_dept_string <>", value, "dataDeptString");
+        public Criteria andDataDeptStringNotEqualTo(String[] value) {
+            addDataDeptStringCriterion("data_dept_string <>", value, "dataDeptString");
             return (Criteria) this;
         }
 
@@ -2456,8 +2506,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringGreaterThan(String value) {
-            addCriterion("data_dept_string >", value, "dataDeptString");
+        public Criteria andDataDeptStringGreaterThan(String[] value) {
+            addDataDeptStringCriterion("data_dept_string >", value, "dataDeptString");
             return (Criteria) this;
         }
 
@@ -2473,8 +2523,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringGreaterThanOrEqualTo(String value) {
-            addCriterion("data_dept_string >=", value, "dataDeptString");
+        public Criteria andDataDeptStringGreaterThanOrEqualTo(String[] value) {
+            addDataDeptStringCriterion("data_dept_string >=", value, "dataDeptString");
             return (Criteria) this;
         }
 
@@ -2490,8 +2540,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringLessThan(String value) {
-            addCriterion("data_dept_string <", value, "dataDeptString");
+        public Criteria andDataDeptStringLessThan(String[] value) {
+            addDataDeptStringCriterion("data_dept_string <", value, "dataDeptString");
             return (Criteria) this;
         }
 
@@ -2507,8 +2557,8 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringLessThanOrEqualTo(String value) {
-            addCriterion("data_dept_string <=", value, "dataDeptString");
+        public Criteria andDataDeptStringLessThanOrEqualTo(String[] value) {
+            addDataDeptStringCriterion("data_dept_string <=", value, "dataDeptString");
             return (Criteria) this;
         }
 
@@ -2524,33 +2574,33 @@ public class SysBiUserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringLike(String value) {
-            addCriterion("data_dept_string like", value, "dataDeptString");
+        public Criteria andDataDeptStringLike(String[] value) {
+            addDataDeptStringCriterion("data_dept_string like", value, "dataDeptString");
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringNotLike(String value) {
-            addCriterion("data_dept_string not like", value, "dataDeptString");
+        public Criteria andDataDeptStringNotLike(String[] value) {
+            addDataDeptStringCriterion("data_dept_string not like", value, "dataDeptString");
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringIn(List<String> values) {
-            addCriterion("data_dept_string in", values, "dataDeptString");
+        public Criteria andDataDeptStringIn(List<String[]> values) {
+            addDataDeptStringCriterion("data_dept_string in", values, "dataDeptString");
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringNotIn(List<String> values) {
-            addCriterion("data_dept_string not in", values, "dataDeptString");
+        public Criteria andDataDeptStringNotIn(List<String[]> values) {
+            addDataDeptStringCriterion("data_dept_string not in", values, "dataDeptString");
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringBetween(String value1, String value2) {
-            addCriterion("data_dept_string between", value1, value2, "dataDeptString");
+        public Criteria andDataDeptStringBetween(String[] value1, String[] value2) {
+            addDataDeptStringCriterion("data_dept_string between", value1, value2, "dataDeptString");
             return (Criteria) this;
         }
 
-        public Criteria andDataDeptStringNotBetween(String value1, String value2) {
-            addCriterion("data_dept_string not between", value1, value2, "dataDeptString");
+        public Criteria andDataDeptStringNotBetween(String[] value1, String[] value2) {
+            addDataDeptStringCriterion("data_dept_string not between", value1, value2, "dataDeptString");
             return (Criteria) this;
         }
 

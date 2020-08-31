@@ -1,9 +1,9 @@
 import { loginByUsername, logout, getUserInfo } from '@/api/login'
 import { getToken, setToken, removeToken } from '@/utils/auth'
+import fa from "element-ui/src/locale/lang/fa";
 
 const user = {
 	state: {
-		userId: '',
 		code: '',
 		token: getToken(),
 		name: '',
@@ -12,12 +12,13 @@ const user = {
 		menus: [],
 		deptId:'',
 		deptIdString:'',
-		deptName:''
+		deptName:'',
+		ifAdminRole:false
 	},
 
 
 	mutations: {
-		SET_USERId: (state, code) => {
+		SET_CODE: (state, code) => {
 			state.code = code
 		},
 		SET_TOKEN: (state, token) => {
@@ -34,6 +35,18 @@ const user = {
 		},
 		SET_MENUS: (state, menus) => {
 			state.menus = menus
+		},
+		SET_DEPTID: (state, deptId) => {
+			state.deptId = deptId
+		},
+		SET_DEPTIDSTRING: (state, deptIdString) => {
+			state.deptIdString = deptIdString
+		},
+		SET_DEPTNAME: (state, deptName) => {
+			state.deptName = deptName
+		},
+		SET_IFADMINROLE: (state, ifAdminRole) => {
+			state.ifAdminRole = ifAdminRole
 		},
 	},
 
@@ -58,11 +71,15 @@ const user = {
 			return new Promise((resolve, reject) => {
 				getUserInfo(state.token).then(response => {
 					const data = response.data.data
-					commit('SET_CODE', data.id)
+					commit('SET_CODE', data.userId)
 					commit('SET_ROLES', data.roles)
 					commit('SET_NAME', data.name)
 					commit('SET_AVATAR', data.avatar)
 					commit('SET_MENUS', data.menus)
+					commit('SET_DEPTID', data.deptId)
+					commit('SET_DEPTIDSTRING', data.deptIdString)
+					commit('SET_DEPTNAME', data.deptName)
+					commit('SET_IFADMINROLE', data.ifAdminRole)
 					resolve(response)
 				}).catch(error => {
 					reject(error)
@@ -72,7 +89,7 @@ const user = {
 
 
 		// 登出
-		LogOut({ commit, state }) {
+		logOut({ commit, state }) {
 			return new Promise((resolve, reject) => {
 				logout(state.token).then(() => {
 					commit('SET_CODE', '')
@@ -80,6 +97,8 @@ const user = {
 					commit('SET_TOKEN', '')
 					commit('SET_ROLES', [])
 					commit('SET_MENUS', [])
+					commit('SET_DEPTID', '')
+					commit('SET_IFADMINROLE', false)
 					removeToken()
 					resolve()
 				}).catch(error => {

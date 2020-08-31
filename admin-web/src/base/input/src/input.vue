@@ -1,7 +1,7 @@
 <template>
-    <div class="ui-input" tabindex="2" :class="{'focus': isFocus}" :style="{'height': height + 'px'}">
+    <div class="ui-input" tabindex="2" :class="{'focus': isFocus}" :style="{'height': height + 'px','width': width + 'px'}">
         <div class="ibox icon-wrap" v-show="prevIcon"><i :class="prevIcon" /></div>
-        <input :type="type" :value="value"  tabindex="6" @blur="onBlur" @focus="onFocus" @change="onChange" :placeholder="placeholder"/>
+        <input :type="type"  :value="value"  tabindex="6" @blur="onBlur" @focus="onFocus" @change="onChange" :placeholder="placeholder"/>
         <div class="ibox icon-wrap" v-show="suffixIcon"><i :class="suffixIcon" /></div>
     </div>
 </template>
@@ -20,8 +20,12 @@ export default {
         suffixIcon: String,
         prevIcon: String,
         height: {
-            type: Number,
-            default: 30
+            type: String,
+            default: '30'
+        },
+        width: {
+            type: String,
+            default: null
         },
         type: {
             type: String,

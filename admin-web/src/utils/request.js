@@ -3,7 +3,7 @@ import { Message, MessageBox } from 'element-ui'
 import store from '@/store'
 import { getToken } from '@/utils/auth'
 
-import configObj from "../config";
+import mysqlConfigObj from "../config/mysqlDbServer";
 
 
 
@@ -11,7 +11,7 @@ import configObj from "../config";
 // 线上环境配置axios.defaults.baseURL，生产环境则用proxy代理
 
 const service = axios.create({
-  baseURL:configObj.baseURL, // api 的 base_url
+  baseURL:mysqlConfigObj.baseURL, // api 的 base_url
   // baseURL:process.env.VUE_APP_ENV_NAME!== 'development'? $config.devBaseUri:$config.prdBaseUri, // api 的 base_url
   timeout: 30000 // request timeout
 })

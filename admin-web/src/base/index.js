@@ -15,7 +15,10 @@ import YCheckbox from './checkbox'
 import YDate from './date'
 import YColor from './color'
 import MessageBox from './messagebox'
+import YCascader from './cascader'
+// import YTree from './tree'
 const components = [
+    YCascader,
     YDialog,
     YSelect,
     YInput,
@@ -31,7 +34,8 @@ const components = [
     YTableColumn,
     YCheckbox,
     YDate,
-    YColor
+    YColor,
+    // YTree
 ]
 const install = function (Vue){
     if(install.installed) return
@@ -47,6 +51,7 @@ if(typeof window !== 'undefined' && window.Vue){
 }
 export default {
     install,
+    YCascader,
     YDialog,
     YSelect,
     YInput,
@@ -62,5 +67,6 @@ export default {
     YTableColumn,
     YCheckbox,
     YDate,
-    YColor
+    YColor,
+    // YTree
 }

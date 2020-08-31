@@ -39,10 +39,6 @@ public class BCorpInfoController {
 //    @RequiresPermissionsDesc(menu={"系统管理" , "组织机构"}, button="查询")
     @GetMapping("/list")
     public Object list(Integer id, String name) {
-        //分组获取各部门流程数据
-        String strSql="select flow_dept_id as flowDeptId, count(*) as count from flow_start_main " +
-                "where deleted=0 group by flow_dept_id";
-        List<Map<String, Object>> groupFlowStartMain= commonDBService.procedureDaoList(strSql);
 
         List<BCorpInfoVo> bCorpInfoVoList = new ArrayList<>();
         List<BCorpInfo> bCorpInfoList=bCorpInfoService.list(id,name);
@@ -61,7 +57,7 @@ public class BCorpInfoController {
         }
         // 2、递归获取子节点
         for (BCorpInfoVo parent : result) {
-            parent = recursiveTree(parent, bCorpInfoVoList,groupFlowStartMain);
+            parent = recursiveTree(parent, bCorpInfoVoList);
         }
 
         return ResponseUtil.okList(result);
@@ -69,11 +65,6 @@ public class BCorpInfoController {
 
     @GetMapping("/listAll")
     public Object listAll(Integer id, String name) {
-
-        //分组获取各部门流程数据
-        String strSql="select flow_dept_id as flowDeptId, count(*) as count from flow_start_main " +
-                "where deleted=0 group by flow_dept_id";
-        List<Map<String, Object>> groupFlowStartMain= commonDBService.procedureDaoList(strSql);
 
         List<BCorpInfoVo> bCorpInfoVoList = new ArrayList<>();
         List<BCorpInfo> bCorpInfoList=bCorpInfoService.list(id,name);
@@ -87,34 +78,22 @@ public class BCorpInfoController {
         // 1、获取第一级节点
         for (BCorpInfoVo bCorpInfoVo : bCorpInfoVoList) {
             if(0 == bCorpInfoVo.getPid()) {
-                Optional<Object> findResult= groupFlowStartMain.stream().filter((item)->item.get("flowDeptId").
-                        equals(bCorpInfoVo.getId())).findFirst().map(x -> x.get("count"));
-                if(findResult.isPresent()){
-                    bCorpInfoVo.setFlowDataCount(CharUtil.objectConverToInteger(findResult.get()));
-                }
                 result.add(bCorpInfoVo);
             }
         }
         // 2、递归获取子节点
         for (BCorpInfoVo parent : result) {
-            parent = recursiveTree(parent, bCorpInfoVoList,groupFlowStartMain);
+            parent = recursiveTree(parent, bCorpInfoVoList);
 
         }
 
         return ResponseUtil.okList(result);
     }
 
-    private BCorpInfoVo recursiveTree(BCorpInfoVo parent, List<BCorpInfoVo> list,List<Map<String, Object>> groupFlowStartMain) {
+    private BCorpInfoVo recursiveTree(BCorpInfoVo parent, List<BCorpInfoVo> list) {
         for (BCorpInfoVo bCorpInfoVo : list) {
             if(parent.getId().equals(bCorpInfoVo.getPid()) ) {
-                bCorpInfoVo = recursiveTree(bCorpInfoVo, list,groupFlowStartMain);
-                BCorpInfoVo temp=bCorpInfoVo;
-                Optional<Object> findResult= groupFlowStartMain.stream().filter((item)->item.get("flowDeptId").
-                        equals(temp.getId())).findFirst().map(x -> x.get("count"));
-                if(findResult.isPresent()){
-                    bCorpInfoVo.setFlowDataCount(CharUtil.objectConverToInteger(findResult.get()));
-                }
-
+                bCorpInfoVo = recursiveTree(bCorpInfoVo, list);
                 if(parent.getChildren()==null){
                     parent.setChildren(new ArrayList<>());
                 }
@@ -171,7 +150,7 @@ public class BCorpInfoController {
         }
 
         //更新操作员所属部门表
-        String strSql="update litemall_admin set dept_name='"+bCorpInfo.getName()+"' where dept_id="+
+        String strSql="update sys_bi_user set dept_name='"+bCorpInfo.getName()+"' where dept_id="+
                 bCorpInfo.getId();
         commonDBService.procedureExec(strSql);
 
@@ -232,40 +211,6 @@ public class BCorpInfoController {
         bCorpInfoService.deleteByIdList(menuIds);
         return ResponseUtil.ok();
     }
-    @GetMapping("/dataTransNewDept")
-    public Object read(@NotNull Integer sourceDeptId,@NotNull Integer targetDeptId) {
-        //将人员信息由原部门更新至新部门
-        BCorpInfo sourceDept=bCorpInfoService.findById(sourceDeptId);
-        BCorpInfo targetDept=bCorpInfoService.findById(targetDeptId);
-        String strSql=" update litemall_admin a,b_corp_info b set a.dept_id="+targetDeptId+",a.dept_name=b.name," +
-                " a.dept_id_string=b.dept_id_string where a.dept_id="+sourceDeptId+" and b.id="+targetDeptId;
-        commonDBService.procedureExec(strSql);
-        //将流程信息中原部门更新至新部门
-        strSql=" update flow_start_main a,b_corp_info b set a.flow_dept_id="+targetDeptId+",a.flow_dept_path=b.name " +
-                " where a.flow_dept_id="+sourceDeptId+" and b.id="+targetDeptId;
-        commonDBService.procedureExec(strSql);
-        //  将业务数据原部门更新至新部门
-        //更新用户数据表
-        strSql="select  table_name  from view_table_field_def where column_name='dept_id' or " +
-                "column_name='dept_name' group by table_name having count(*)=2";
-        Map<String, Object> param=new HashMap<>();
-        param.put("sqlS",strSql);
-        List<Map<String, Object>> resultTables=commonDBService.procedureDaoList(param);
-        if(resultTables!=null||resultTables.size()>0) {
-            for (Map<String, Object> item : resultTables) {
-                if(!StringUtils.isEmpty(item.get("table_name"))){
-                    String strTableName=item.get("table_name").toString();
-                    strSql=" update `"+strTableName+"` a,b_corp_info b set a.dept_id="+targetDeptId+",a.dept_name=b.name " +
-                            "  where a.dept_id="+sourceDeptId+" and b.id="+targetDeptId;
-                    System.out.println(strSql);
-                    commonDBService.procedureExec(strSql);
-                }
-
-            }
-        }
-        return ResponseUtil.ok();
-    }
-
 
 
 }

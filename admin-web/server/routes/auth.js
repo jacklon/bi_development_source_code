@@ -16,7 +16,8 @@ router.post('/login', async ctx=> {
         ctx.body = '密码错误'
         return
     }
-    let userToken = {name: result.username, _id: result._id}
+
+    let userToken = {name: data.username, _id: data.userId}
     ctx.body = {
         token: jsonwebtoken.sign(userToken, ctx.state.SECRET, {expiresIn: '24h'})
     }

@@ -1,18 +1,13 @@
-import { asyncRouterMap, constantRouterMap } from '@/router'
+import { asyncRouterMap  } from '@/router'
 import {mapGetters, mapActions, mapMutations} from 'vuex'
-import { getMenuSecondLevel} from '@/api/menu'
-
+import store from '../index'
 /**
  * 通过meta.perms判断是否与当前用户权限匹配
  * @param perms
  * @param route
  */
-function hasPermission(perms, route) {
-  if (route.meta && route.meta.perms) {
-    return perms.some(perm => route.meta.perms.includes(perm))
-  } else {
-    return true
-  }
+function hasPermission(menus, route) {
+  return menus.some(menu => route.name==(menu.code))
 }
 
 /**
@@ -20,18 +15,18 @@ function hasPermission(perms, route) {
  * @param routes asyncRouterMap
  * @param perms
  */
-function filterAsyncRouter(routes, perms) {
+function filterAsyncRouter(routes, menus) {
   const res = []
 
   routes.forEach(route => {
     const tmp = { ...route }
     if (tmp.children) {
-      tmp.children = filterAsyncRouter(tmp.children, perms)
+      tmp.children = filterAsyncRouter(tmp.children, menus)
       if (tmp.children && tmp.children.length > 0) {
         res.push(tmp)
       }
     } else {
-      if (hasPermission(perms, tmp)) {
+      if (hasPermission(menus, tmp)) {
         res.push(tmp)
       }
     }
@@ -42,71 +37,28 @@ function filterAsyncRouter(routes, perms) {
 
 const permission = {
   state: {
-    routers: constantRouterMap,
+    // routers: asyncRouterMap,
     addRouters: []
   },
   mutations: {
     SET_ROUTERS: (state, routers) => {
       state.addRouters = routers
-      state.routers = constantRouterMap.concat(routers)
     }
   },
   actions: {
     GenerateRoutes({ commit }, data) {
       return new Promise(resolve => {
-        const { perms } = data
-        let accessedRouters
-        let newAccessedRouters=[]
-        let subAccessedRouters=[]
+
         let menus= this.getters.menus;
-        let secondmenus=this.getters.secondmenus;
-
-        if (perms.includes('*')) {
-          accessedRouters = asyncRouterMap
-        } else {
-          accessedRouters = filterAsyncRouter(asyncRouterMap, perms)
-        }
-        if(menus!=null&&menus.length>0){
-          for(var itemMenu of menus)
-          {
-            for(var itemRoute of accessedRouters)
-            {
-                if(itemRoute.name==itemMenu)
-                {
-
-                  //判断该用户所属角色是否有二级目录权限
-                      let subChildren=itemRoute.children;
-                      subAccessedRouters=[];
-                      if(secondmenus!=null&&secondmenus.length>0){
-                        for(var subItemMenu of secondmenus)
-                        {
-                          for(var subItemRoute of subChildren)
-                          {
-                            if(subItemRoute.name==subItemMenu.menuCode)
-                            {
-                              subAccessedRouters.push(subItemRoute);
-                            }
-                          }
-                        }
-                        itemRoute.children=[]
-                        if(subAccessedRouters!=null&&subAccessedRouters.length>0)
-                        {
-                          itemRoute.children=subAccessedRouters
-                        }
-
-                      }
-                      newAccessedRouters.push(itemRoute)
-
-                }
-            }
-          }
-        } else
-        {
-          newAccessedRouters=accessedRouters;
-        }
-
-
-        commit('SET_ROUTERS', newAccessedRouters)
+        // let accessedRouters;
+        //
+        // if (menus.length==1||store.getters.ifAdminRole==true) {
+        //   accessedRouters = asyncRouterMap
+        // } else {
+        //   accessedRouters = filterAsyncRouter(asyncRouterMap, menus)
+        // }
+        // commit('SET_ROUTERS', accessedRouters)
+        commit('SET_ROUTERS', asyncRouterMap)
         resolve()
       })
     }

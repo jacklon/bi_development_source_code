@@ -15,11 +15,12 @@ export const asyncRouterMap = [
 			noNeedLogin: true
 		}
 	},
+
 	{
 		path: '/',
 		name: 'home',
 		component: () => import('@/pages/home/index'),
-		redirect: { name: 'projectCreate' },
+		redirect: { name: 'threejsCreate' },
 		children: [{
 			path: '/project-create',
 			name: 'projectCreate',
@@ -36,7 +37,135 @@ export const asyncRouterMap = [
 			path: '/threejs-create',
 			name: 'threejsCreate',
 			component: () => import('@/pages/home/threejs-create'),
-		}]
+		},
+		{
+			path: '/blank',
+			name: 'blank',
+			component: () => import('@/pages/home/blank'),
+		},
+		// {
+		// 	path: 'treedic',
+		// 	component: () => import('@/pages/sys/treedic'),
+		// 	name: 'treedic',
+		// 	meta: {
+		// 		title: '树形代码',
+		// 		noCache: true
+		// 	}
+		// },
+		// {
+		// 	path: 'dicmain',
+		// 	component: () => import('@/pages/sys/dicmain'),
+		// 	name: 'dicmain',
+		// 	meta: {
+		// 		title: '系统代码',
+		// 		noCache: true
+		// 	}
+		// },
+		//
+		//
+		// {
+		// 	path: 'config/sysParas',
+		// 	component: () => import('@/pages/sys/config/sysParas'),
+		// 	name: 'sysParas',
+		// 	meta: {
+		// 		title: '系统参数',
+		// 		noCache: true
+		// 	}
+		// },
+		//
+		// {
+		// 	path: 'opadmindef',
+		// 	component: () => import('@/pages/sys/info/opadmindef'),
+		// 	name: 'opadmindef',
+		// 	meta: {
+		// 		title: '消息定义',
+		// 		noCache: true
+		// 	}
+		// },
+		// {
+		// 	path: 'opadmininfo',
+		// 	component: () => import('@/pages/sys/info/opadmininfo'),
+		// 	name: 'opadmininfo',
+		// 	meta: {
+		// 		title: '消息列表',
+		// 		noCache: true
+		// 	}
+		// },
+		//
+		{
+			path: '/menuSet',
+			component: () => import('@/pages/sys/sysManage/menuSet'),
+			name: 'menuSet',
+			meta: {
+				title: '菜单管理',
+				noCache: true
+			}
+		},
+		{
+			path: '/bcorpinfo',
+			component: () => import('@/pages/sys/sysManage/bcorpinfo'),
+			name: 'bcorpinfo',
+			meta: {
+				title: '组织管理',
+				noCache: true
+			}
+		},
+		{
+			path: '/role',
+			component: () => import('@/pages/sys/sysManage/role'),
+			name: 'role',
+			meta: {
+				title: '角色管理',
+				noCache: true
+			}
+		},
+		{
+			path: '/user',
+			component: () => import('@/pages/sys/sysManage/admin'),
+			name: 'user',
+			meta: {
+				title: '人员管理',
+				noCache: true
+			}
+		},
+		// {
+		// 	path: 'bcorpinfo',
+		// 	component: () => import('@/pages/sys/sysManage/bcorpinfo'),
+		// 	name: 'bcorpinfo',
+		// 	meta: {
+		// 		title: '组织机构',
+		// 		noCache: true
+		// 	}
+		// },
+		// {
+		// 	path: 'role',
+		// 	component: () => import('@/pages/sys/sysManage/role'),
+		// 	name: 'role',
+		// 	meta: {
+		// 		title: '角色管理',
+		// 		noCache: true
+		// 	}
+		// },
+		// {
+		// 	path: 'admin',
+		// 	component: () => import('@/pages/sys/sysManage/admin'),
+		// 	name: 'admin',
+		// 	meta: {
+		// 		title: '操作员',
+		// 		noCache: true
+		// 	}
+		// },
+		// {
+		// 	path: 'log',
+		// 	component: () => import('@/pages/sys/sysManage/log'),
+		// 	name: 'log',
+		// 	meta: {
+		// 		title: '操作日志',
+		// 		noCache: true
+		// 	}
+		// },
+
+		]
 	},
 	{
 		path: '/power-editor',
@@ -67,100 +196,6 @@ export const asyncRouterMap = [
 			noNeedLogin: true
 		}
 	},
-	// {
-	// 	path: 'treedic',
-	// 	component: () => import('@/pages/sys/treedic'),
-	// 	name: 'treedic',
-	// 	meta: {
-	// 		title: '树形代码',
-	// 		noCache: true
-	// 	}
-	// },
-	// {
-	// 	path: 'dicmain',
-	// 	component: () => import('@/pages/sys/dicmain'),
-	// 	name: 'dicmain',
-	// 	meta: {
-	// 		title: '系统代码',
-	// 		noCache: true
-	// 	}
-	// },
-	//
-	//
-	// {
-	// 	path: 'config/sysParas',
-	// 	component: () => import('@/pages/sys/config/sysParas'),
-	// 	name: 'sysParas',
-	// 	meta: {
-	// 		title: '系统参数',
-	// 		noCache: true
-	// 	}
-	// },
-	//
-	// {
-	// 	path: 'opadmindef',
-	// 	component: () => import('@/pages/sys/info/opadmindef'),
-	// 	name: 'opadmindef',
-	// 	meta: {
-	// 		title: '消息定义',
-	// 		noCache: true
-	// 	}
-	// },
-	// {
-	// 	path: 'opadmininfo',
-	// 	component: () => import('@/pages/sys/info/opadmininfo'),
-	// 	name: 'opadmininfo',
-	// 	meta: {
-	// 		title: '消息列表',
-	// 		noCache: true
-	// 	}
-	// },
-	//
-	// {
-	// 	path: 'menu',
-	// 	component: () => import('@/pages/sys/sysManage/menu'),
-	// 	name: 'menu',
-	// 	meta: {
-	// 		title: '菜单管理',
-	// 		noCache: true
-	// 	}
-	// },
-	// {
-	// 	path: 'bcorpinfo',
-	// 	component: () => import('@/pages/sys/sysManage/bcorpinfo'),
-	// 	name: 'bcorpinfo',
-	// 	meta: {
-	// 		title: '组织机构',
-	// 		noCache: true
-	// 	}
-	// },
-	// {
-	// 	path: 'role',
-	// 	component: () => import('@/pages/sys/sysManage/role'),
-	// 	name: 'role',
-	// 	meta: {
-	// 		title: '角色管理',
-	// 		noCache: true
-	// 	}
-	// },
-	// {
-	// 	path: 'admin',
-	// 	component: () => import('@/pages/sys/sysManage/admin'),
-	// 	name: 'admin',
-	// 	meta: {
-	// 		title: '操作员',
-	// 		noCache: true
-	// 	}
-	// },
-	// {
-	// 	path: 'log',
-	// 	component: () => import('@/pages/sys/sysManage/log'),
-	// 	name: 'log',
-	// 	meta: {
-	// 		title: '操作日志',
-	// 		noCache: true
-	// 	}
-	// },
 
 
 ]

@@ -37,7 +37,7 @@
 </template>
 <script>
     import {listSysParas} from '@/api/config'
-
+    import { getUserInfo } from '@/api/login'
     export default {
         name: 'Login',
         data() {
@@ -124,9 +124,25 @@
                         this.loading = true
                         //这里要直接转到主页面，而不是上次别的用户登陆的页面
                         let redirectPage="/";
-                        this.$store.dispatch('LoginByUsername', this.loginForm).then(() => {
+                        this.$store.dispatch('LoginByUsername', this.loginForm).then((userLogIn) => {
                             this.loading = false
                             this.$router.push({ path: redirectPage || '/' })
+                            //获取用户信息
+                            console.log(this.$store.getters.token)
+                            getUserInfo().then((userInfo)=>{
+                                    //获取MongoDbServer访问的Token
+                                    // this.$axios.post('/auth/login',{username:this.$refs.loginForm.username,
+                                    //     password:this.$refs.loginForm.password,userId:userInfo.data.data.userId}).then(res => {
+                                    //     this.$mUtils.setLocalStorage('token', 'Bearer ' + res.body.token)
+                                    // })
+                                    this.$axios.post('/auth/login',{username:'lizs',
+                                        password:'lizs'}).then(res => {
+                                        this.$mUtils.setLocalStorage('token', 'Bearer ' + res.body.token)
+                                    })
+                            }
+
+                            )
+
                             // sessionStorage.setItem()
                         }).catch(response => {
                             this.$message.error( '失败:'+response.data.errmsg);
