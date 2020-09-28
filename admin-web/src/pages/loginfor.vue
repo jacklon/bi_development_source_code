@@ -6,7 +6,7 @@
 <!--        </div>-->
         <div class="body">
             <div class="login-wrap">
-                <div class="login-title">北京劲远科技BI</div>
+                <div class="login-title">BI</div>
                 <div class="login-user">
                     <img src="./user.png" class="login-user-icon"/>
                     <input type="text" placeholder="请输入用户名" class="login-user-input" maxlength="20" v-model="username">

@@ -8,10 +8,10 @@
         </el-option>
       </el-select>
 
-      <el-input v-model="listQuery.title" clearable class="filter-item" style="width: 150px;" placeholder="请输入消息主题"/>
+      <el-input v-model="listQuery.title" clearable class="filter-item" style="width: 150px;margin-right: 10px" placeholder="请输入消息主题"/>
 
-      <el-button   class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
-      <el-button   class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
+      <el-button size="small"  class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
+      <el-button size="small"  class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
     </div>
 
     <!-- 查询结果 -->

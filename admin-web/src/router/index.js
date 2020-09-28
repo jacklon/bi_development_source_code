@@ -1,7 +1,15 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
+
+
 Vue.use(Router)
+
+// 解决ElementUI导航栏中的vue-router在3.0版本以上重复点菜单报错问题
+const originalPush = Router.prototype.push
+Router.prototype.push = function push(location) {
+	return originalPush.call(this, location).catch(err => err)
+}
 
 export const asyncRouterMap = [
 	{
@@ -127,6 +135,83 @@ export const asyncRouterMap = [
 				title: '人员管理',
 				noCache: true
 			}
+		},
+		{
+			path: '/treedic',
+			component: () => import('@/pages/sys/treedic'),
+			name: 'treedic',
+			meta: {
+				title: '树形代码',
+				noCache: true
+			}
+		},
+		{
+			path: '/dicmain',
+			component: () => import('@/pages/sys/dicmain'),
+			name: 'dicmain',
+			meta: {
+				title: '代码字典',
+				noCache: true
+			}
+		},
+		{
+			path: '/storage',
+			component: () => import('@/pages/sys/sysManage/storage'),
+			name: 'storage',
+			meta: {
+				title: '对象存储',
+				noCache: true
+			}
+		},
+		{
+			path: '/log',
+			component: () => import('@/pages/sys/sysManage/log'),
+			name: 'log',
+			meta: {
+				title: '登陆日志',
+				noCache: true
+			}
+		},
+		{
+			path: '/sysOperationLog',
+			component: () => import('@/pages/sys/sysMonitor/sysOperationLog'),
+			name: 'sysOperationLog',
+			meta: {
+				title: '登陆日志',
+				noCache: true
+			}
+		},
+		{
+			path: '/opadmindef',
+			component: () => import('@/pages/sys/info/opadmindef'),
+			name: 'opadmindef',
+			meta: {
+				title: '消息定义',
+				noCache: true
+			}
+		},
+		{
+			path: '/opadmininfo',
+			component: () => import('@/pages/sys/info/opadmininfo'),
+			name: 'opadmininfo',
+			meta: {
+				title: '消息列表',
+				noCache: true
+			}
+		},
+		{
+			path: '/tabledesp',
+			component: () => import('@/pages/sys/tabledesp'),
+			name: 'tabledesp',
+			meta: {
+				title: '视图列表',
+				noCache: true
+			}
+		},
+		{
+			path: '/dataConnection',
+			name: 'dataConnection',
+			component: () => import('@/pages/data/dataConnection'),
 		},
 		// {
 		// 	path: 'bcorpinfo',

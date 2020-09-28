@@ -518,26 +518,19 @@ DROP TABLE IF EXISTS `sys_table_desp`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sys_table_desp` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `olt_table_desp` varchar(255) DEFAULT NULL COMMENT '中文含义',
-  `olt_primary_field_name` varchar(255) DEFAULT NULL COMMENT '主键字段名',
-  `olt_remark` varchar(1023)  DEFAULT NULL COMMENT '备注',
-  `olt_parent_id` int(11) DEFAULT NULL COMMENT '上一级主表ID',
-  `olt_unique_field_names` varchar(4000) DEFAULT '[]' COMMENT '唯一性约束字段',
-  `olt_unique_field_deps` varchar(4000) DEFAULT '[]' COMMENT '唯一性约束字段描述',
-  `olt_foreign_field_name` varchar(255) DEFAULT NULL COMMENT '外键属性字段名',
-  `olt_foreign_field_des` varchar(255) DEFAULT NULL COMMENT '外键属性描述',
+  `db_name` varchar(255) DEFAULT NULL COMMENT '数据库名',
+  `db_table_or_view_name` varchar(255) DEFAULT NULL COMMENT 'DB表名或视图名',
+  `chinese_desc` varchar(1023)  DEFAULT NULL COMMENT '中文含义',
+  `primary_field_name` varchar(4000) DEFAULT NULL COMMENT '主键字段名',
   `ordernumber` int(11) DEFAULT NULL COMMENT '排序',
-  `olt_db_talbe_view_name` varchar(255) DEFAULT NULL COMMENT 'DB表名或视图名',
-  `olt_db_talbe_view_desc` varchar(255) DEFAULT NULL COMMENT 'DB表名或视图名描述',
-  `olt_json_package_name` varchar(255) DEFAULT NULL COMMENT 'Json包名称',
-  tenant_id  int(11) not null default 0 COMMENT '租户ID',
+  `tenant_id`  int(11) not null default 0 COMMENT '租户ID',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `add_by` varchar(255) DEFAULT NULL COMMENT '创建人',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `update_by` varchar(255) DEFAULT NULL COMMENT '最后修改人',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='基础数据_数据库表_中文描述';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='数据_视图';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -549,29 +542,21 @@ DROP TABLE IF EXISTS `sys_table_field_desp`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `sys_table_field_desp` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `olt_id` int(11) DEFAULT NULL COMMENT '操作表ID',
-  `main_table_desp` varchar(255) DEFAULT NULL COMMENT '主表描述',
-  `olf_field_name` varchar(255) DEFAULT NULL COMMENT '操作字段名',
-  `olf_field_trans_name` varchar(255) DEFAULT NULL COMMENT '驼峰命名',
-  `olf_field_desp` varchar(255) DEFAULT NULL COMMENT '中文含义',
-  `olf_field_type` varchar(255)  DEFAULT NULL COMMENT '数据库字段类型',
-  `olf_dic_id` int(11)  DEFAULT NULL COMMENT '关联字典表Id',
-  `olf_dic_name` varchar(255)  DEFAULT NULL COMMENT '关联字典表名称',
-  `olf_remark` varchar(1023) DEFAULT NULL COMMENT '备注',
+  `std_id` int(11) DEFAULT NULL COMMENT '操作表ID',
+  `std_chinese_desc` varchar(255) DEFAULT NULL COMMENT '主表描述',
+  `field_name` varchar(255) DEFAULT NULL COMMENT '操作字段名',
+  `field_chinese_desp` varchar(255) DEFAULT NULL COMMENT '中文含义',
+  `field_type` varchar(255)  DEFAULT NULL COMMENT '数据库字段类型',
+  `field_remark` varchar(1023) DEFAULT NULL COMMENT '备注',
   `ordernumber` int(11) DEFAULT NULL COMMENT '排序',
-  `olt_table_name` varchar(255) DEFAULT NULL COMMENT '关联其它表名',
-  `olt_table_desp` varchar(255) DEFAULT NULL COMMENT '关联其它表描述',
-  `olt_table_field_label` varchar(255) DEFAULT NULL COMMENT '取值表显示名字段',
-  `olt_table_field_value` varchar(255)  DEFAULT NULL COMMENT '取值表值字段',
-  `olf_if_multi_value` tinyint(1) DEFAULT '0' COMMENT '是否多值列表',
-  tenant_id  int(11) not null default 0 COMMENT '租户ID',
+  `tenant_id`  int(11) not null default 0 COMMENT '租户ID',
   `add_time` datetime DEFAULT NULL COMMENT '创建时间',
   `add_by` varchar(255) DEFAULT NULL COMMENT '创建人',
   `update_time` datetime DEFAULT NULL COMMENT '更新时间',
   `update_by` varchar(255) DEFAULT NULL COMMENT '最后修改人',
   `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='基础数据_数据库表_字段中文描述';
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci COMMENT='数据_视图_字段中文描述';
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -638,3 +623,27 @@ CREATE TABLE `sys_quartz_task_manage` (
 )  ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='定时任务管理';
 
 
+-- ----------------------------
+-- Table structure for job_jdbc_datasource
+-- ----------------------------
+DROP TABLE IF EXISTS `bi_data_connection`;
+CREATE TABLE `bi_data_connection`  (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `datasource_name` varchar(200) NOT NULL COMMENT '数据源名称',
+  `datasource` varchar(45)  NOT NULL COMMENT '数据源',
+  `datasource_group` varchar(200) DEFAULT 'Default' COMMENT '数据源分组',
+  `database_name` varchar(45) DEFAULT NULL COMMENT '数据库名',
+  `jdbc_username` varchar(100) DEFAULT NULL COMMENT '用户名',
+  `jdbc_password` varchar(200) DEFAULT NULL COMMENT '密码',
+  `jdbc_url` varchar(500) NOT NULL COMMENT 'jdbc url',
+  `jdbc_driver_class` varchar(200) DEFAULT NULL COMMENT 'jdbc驱动类',
+  `zk_adress` varchar(200) DEFAULT NULL COMMENT 'zookeeper地址',
+  `status` tinyint(1) NOT NULL DEFAULT 1 COMMENT '状态：0删除 1启用 2禁用',
+  tenant_id  int(11) not null default 0 COMMENT '租户ID',
+  `add_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `add_by` varchar(255) DEFAULT NULL COMMENT '创建人',
+  `update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `update_by` varchar(255) DEFAULT NULL COMMENT '最后修改人',
+  `deleted` tinyint(1) DEFAULT '0' COMMENT '逻辑删除',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ROW_FORMAT=DYNAMIC COMMENT='jdbc数据源配置';

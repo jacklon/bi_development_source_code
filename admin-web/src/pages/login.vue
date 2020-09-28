@@ -7,7 +7,7 @@
                  class="login-form" auto-complete="on" >
             <div class="title-container">
                 <svg-icon icon-class="eye" />
-                <h3 class="title">劲远科技BI登录</h3>
+                <h3 class="title">BI登录</h3>
             </div>
 
             <el-form-item prop="username">

@@ -414,6 +414,8 @@
       load(){
         listMenu().then(response => {
             this.menuTree = response.data.data.list
+        }).catch(error=>{
+            this.$message.error(error)
         })
       }
     },

@@ -5,48 +5,19 @@
     <div class="filter-container">
 
       <el-input v-model="listQuery.opadminName" clearable class="filter-item" style="width: 150px;" placeholder="接收人员"/>
-      <el-input v-model="listQuery.flowStartName" clearable class="filter-item" style="width: 150px;" placeholder="流程名称"/>
-      <el-input v-model="listQuery.flowNodeName" clearable class="filter-item" style="width: 150px;" placeholder="节点名称"/>
 
       <el-input v-model="listQuery.title" clearable class="filter-item" style="width: 150px;" placeholder="消息主题"/>
-      <el-input v-model="listQuery.content" clearable class="filter-item" style="width: 150px;" placeholder="消息内容"/>
+      <el-input v-model="listQuery.content" clearable class="filter-item" style="width: 150px;margin-right: 10px" placeholder="消息内容"/>
 
-      <el-button   class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
+      <el-button size="small" class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
 
     </div>
 
     <!-- 查询结果 -->
     <el-table v-loading="listLoading"  :cell-style="cellStyle" :data="list" element-loading-text="正在查询中。。。" border fit highlight-current-row>
-      <el-table-column align="center" label="操作" width="120px"
-                       class-name="small-padding fixed-width">
-        <template slot-scope="scope">
-          <div class="filter-container" gap="20"
-               style="display: flex;justify-content:flex-start;flex:10;padding-bottom: 0px">
-            <el-button-group style=" vertical-align: center;">
 
-              <el-button type="success" icon="el-icon-s-custom" v-if="scope.row!=null&&scope.row.flowInstanceId!=null&&scope.row.flowInstanceId!=''"
-                         style="width: 24px;height: 24px;align-content: center;padding: 4px;margin-right:5px"
-                         title="跟踪流程" @click="TraceFlow(scope.row)"></el-button>
-              <el-button type="warning" icon="el-icon-s-data" v-if="scope.row!=null&&scope.row.flowInstanceId!=null&&scope.row.flowInstanceId!=''"
-                         style="width: 24px;height: 24px;align-content: center;padding: 4px;margin-right:5px"
-                         title="流程看板" @click="ViewKanBan(scope.row)"></el-button>
-
-              <el-button v-if="scope.row!=null&&scope.row.flowInstanceId!=null&&scope.row.flowInstanceId!=''"
-                         type="info" icon="el-icon-view"
-                         style="width: 24px;height: 24px;align-content: center;padding: 1px;margin-right:3px"
-                         title="流程信息" @click="displayFlowInfoView(scope.row)">
-              </el-button>
-
-            </el-button-group>
-
-          </div>
-        </template>
-      </el-table-column>
       <el-table-column align="center" label="接收人员" prop="opadminName"/>
       <el-table-column align="center" label="电话号码" prop="telephone"/>
-      <el-table-column align="center" label="流程名称" prop="flowStartName"/>
-      <el-table-column align="center" label="流程定义" prop="flowModelKey"/>
-      <el-table-column align="center" label="节点名称" prop="flowNodeName"/>
 
       <el-table-column align="center" label="消息主题" prop="title"/>
       <el-table-column align="center"  width="300px"   label="消息内容" prop="content"/>
@@ -164,7 +135,7 @@
 
   export default {
     name: 'opadmininfo',
-    components: { Pagination,FlowTrace,EchartGantt,FlowInfoView },
+    components: { Pagination },
     data() {
       return {
         uploadPath,
@@ -190,14 +161,6 @@
         dataForm:{},
         dialogFormVisible: false,
 
-        dialogTraceVisible:false,
-        flowInfoViewVisible:false,
-        flowKanBanVisible:false,
-        currentSelectInstanceId:null,
-        currentSelectFlowStartName:null,
-        currentSelectModeyKey:null,
-
-        flowStartMain:{},
       }
     },
     computed: {
@@ -222,55 +185,7 @@
         {
           return ''
         }
-        // if (rowIndex === 1 && columnIndex === 2) { //指定坐标rowIndex ：行，columnIndex ：列
-        //   return 'background:red' //rgb(105,0,7)
-        // } else {
-        //   return ''
-        // }
       },
-
-        readFlowStartMain(row){
-        readFlowStartMain(row.flowStartId).then(
-          (res)=>{
-            let data=res.data.data;
-            this.flowStartMain=data.flowStartMain;
-          }
-        );
-      },
-      displayFlowInfoView(row){
-        this.selectCurrentRow=row
-        this.readFlowStartMain(row)
-        this.flowInfoViewVisible=true;
-      },
-
-      closeFlowInfoView() {
-        this.flowInfoViewVisible = false;
-        this.selectCurrentRow = [];
-      },
-      closeFlowKanBanForm() {
-        this.currentSelectInstanceId = ''
-        this.flowKanBanVisible = false;
-      },
-      closeFlowTraceForm() {
-        this.currentSelectDataId = ''
-        this.currentSelectModeyKey = ''
-        this.currentSelectInstanceId = ''
-        this.currentSelectFlowStartName = ''
-        this.dialogTraceVisible = false;
-      },
-      ViewKanBan(row) {
-        this.currentSelectInstanceId = row.flowInstanceId;
-        this.currentSelectFlowStartName= row.flowStartName;
-        this.flowKanBanVisible = true;
-      },
-      TraceFlow(row) {
-        this.currentSelectDataId = row.id
-        this.currentSelectModeyKey = row.flowModelKey
-        this.currentSelectInstanceId = row.flowInstanceId;
-        this.currentSelectFlowStartName = row.flowStartName;
-        this.dialogTraceVisible = true;
-      },
-
 
       getTypeIdList(){
         listDiccode({dicmainName:"后端消息_类型"}).then(response => {

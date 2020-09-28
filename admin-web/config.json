@@ -11,8 +11,7 @@
     },
     "devMongoDbServerBaseUri":"http://localhost:4000",
     "prdMongoDbServerBaseUri":"http://localhost:4000",
+    "baseURL":"http://localhost:4000",
     "devMysqlDbServerBaseUri":"http://localhost:9910/admin",
-    "prdMysqlServerBaseUri":"http://localhost:9910/admin",
-
-    "baseURL":"http://localhost:4000"
+    "prdMysqlServerBaseUri":"http://localhost:9910/admin"
 }

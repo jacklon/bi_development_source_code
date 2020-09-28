@@ -4,8 +4,7 @@ import org.java.bi.db.domain.SysOpadminDef;
 import org.java.bi.db.service.SysOpadminDefService;
 import org.java.bi.db.util.NotifyPlaceholderResolver;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
+
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -15,7 +14,6 @@ import java.util.Map;
  * 商城通知服务类
  */
 public class NotifyService {
-    private MailSender mailSender;
 
     private String sendFrom;
     private String sendTo;
@@ -27,9 +25,7 @@ public class NotifyService {
     @Resource
     private NotifyPlaceholderResolver notifyPlaceholderResolver;
 
-    public boolean isMailEnable() {
-        return mailSender != null;
-    }
+
 
 
     /**
@@ -90,33 +86,6 @@ public class NotifyService {
     }
 
 
-
-    /**
-     * 邮件消息通知,
-     * 接收者在spring.mail.sendto中指定
-     *
-     * @param subject 邮件标题
-     * @param content 邮件内容
-     */
-    public void notifyMail(String subject, String content,String sendFrom,String sendTo) {
-        if (mailSender == null)
-            return;
-
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(sendFrom);
-        message.setTo(sendTo);
-        message.setSubject(subject);
-        message.setText(content);
-        mailSender.send(message);
-    }
-
-    public MailSender getMailSender() {
-        return mailSender;
-    }
-
-    public void setMailSender(MailSender mailSender) {
-        this.mailSender = mailSender;
-    }
 
     public SysOpadminDefService getOpadminDefService() {
         return opadminDefService;

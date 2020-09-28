@@ -91,56 +91,5 @@ public class SysOperationLogService {
         return sysOperationLogMapper.selectByExampleSelective(example);
     }
 
-    /**
-     * 通过参数方式增加数据操作日志
-     * @param logTypeName 日志类型
-     * @param tableId 系统维护表
-     * @param dataId  数据主键
-     * @param logRemark 操作日志
-     * @param parentTableId 当前操作表的父表ID
-     * @param parentDataId 父表的数据主键
-     * @param flowInstanceId 流程实例id
-     * @param addBy 填加人
-     */
-    public void add(String logTypeName,Integer tableId,Integer dataId,String logRemark,String nodeRemark,
-                    Integer parentTableId,Integer parentDataId,String flowInstanceId,
-                    String taskId,String addBy,Integer flowStartId) {
-        List<SysTableDesp>  sysTableDespList= sysTableDespService.queryAll();
-
-        SysOperationLog addNew=new SysOperationLog();
-        addNew.setLogTypeName(logTypeName);
-        addNew.setTableId(tableId);
-        Optional<SysTableDesp> findTable = sysTableDespList.stream().filter(item -> item.getId().equals(tableId)).findFirst();
-        if(findTable.isPresent()){
-            addNew.setTableName(findTable.get().getOltDbTalbeViewName());
-            addNew.setTableDesc(findTable.get().getOltTableDesp());
-        }
-        addNew.setDataId(dataId);
-        addNew.setLogRemark(logRemark);
-        addNew.setNodeRemark(nodeRemark);
-        addNew.setParentTableId(parentTableId);
-        if(!StringUtils.isEmpty(parentTableId)){
-            Optional<SysTableDesp> findParentTable = sysTableDespList.stream().filter(item -> item.getId().equals(parentTableId)).findFirst();
-            if(findTable.isPresent()){
-                addNew.setParentTableName(findParentTable.get().getOltDbTalbeViewName());
-                addNew.setParentTableDesc(findParentTable.get().getOltTableDesp());
-            }
-        }
-        addNew.setParentDataId(parentDataId);
-        if(!StringUtils.isEmpty(flowStartId)) {
-            addNew.setFlowStartId(flowStartId);
-        }
-        if(!StringUtils.isEmpty(flowInstanceId)) {
-            addNew.setFlowInstanceId(flowInstanceId);
-        }
-        if(!StringUtils.isEmpty(taskId)) {
-            addNew.setTaskId(taskId);
-        }
-        addNew.setAddBy(addBy);
-        addNew.setUpdateBy(addBy);
-        addNew.setAddTime(LocalDateTime.now());
-        addNew.setUpdateTime(LocalDateTime.now());
-        sysOperationLogMapper.insertSelective(addNew);
-    }
 
 }

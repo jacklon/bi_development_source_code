@@ -20,11 +20,11 @@ export default {
         suffixIcon: String,
         prevIcon: String,
         height: {
-            type: String,
-            default: '30'
+            type: Number,
+            default: 30
         },
         width: {
-            type: String,
+            type: Number,
             default: null
         },
         type: {

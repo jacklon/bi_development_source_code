@@ -10,6 +10,8 @@ import filters from './filter/index'
 import AES from '@/common/js/secret'
 import userModel from '@src/mixins/userModel'
 
+import preventReClick from '@/directive/preventReClick' //防多次点击，重复提交
+
 // 将自动注册所有组件为全局组件
 import dataV from '@jiaminghi/data-view'
 

@@ -844,6 +844,9 @@ tr.current-row > td {
 .el-cascader{
   line-height: 30px;
 }
+.el-card__body {
+  padding: 10px;
+}
 .el-cascader .el-input .el-input__inner {
   background: rgb(28, 34, 43);
   color: #bcc9d4;
@@ -865,4 +868,19 @@ tr.current-row > td {
   color: #606266;
   font-size: 14px;
   word-break: break-all;
+}
+
+.el-dialog__header {
+  padding: 10px 20px 10px;
+}
+.el-select-dropdown__item {
+  color: #fff;
+}
+.el-select-dropdown__item.hover, .el-select-dropdown__item:hover {
+  background-color: #1f83ff;
+}
+
+.el-select-dropdown__item.selected {
+  color: white;
+  font-weight: bold;
 }

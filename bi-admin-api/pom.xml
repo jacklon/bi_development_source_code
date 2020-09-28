@@ -16,6 +16,11 @@
 
     <dependencies>
         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
             <groupId>org.yaml</groupId>
             <artifactId>snakeyaml</artifactId>
             <version>1.26</version>
@@ -41,6 +46,11 @@
         <dependency>
             <groupId>org.java</groupId>
             <artifactId>bi-db</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.java</groupId>
+            <artifactId>bi-ck</artifactId>
         </dependency>
 
         <dependency>
@@ -82,6 +92,12 @@
             <groupId>com.itextpdf</groupId>
             <artifactId>itext-asian</artifactId>
             <version>5.2.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.java</groupId>
+            <artifactId>bi-ck</artifactId>
+            <version>0.1.0</version>
+            <scope>compile</scope>
         </dependency>
 
 

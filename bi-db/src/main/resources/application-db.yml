@@ -4,24 +4,6 @@ pagehelper:
   supportMethodsArguments:  true
   params: count=countSql
 
-#spring:
-#  datasource:
-#    druid:
-#      initial-size: 10
-#      max-active: 40
-#      max-pool-prepared-statement-per-connection-size: 20
-#      max-wait: 60000
-#      min-evictable-idle-time-millis: 300000
-#      min-idle: 5
-#      pool-prepared-statements: true
-#      test-on-borrow: false
-#      test-on-return: false
-#      test-while-idle: true
-#      time-between-eviction-runs-millis: 60000
-#      url: jdbc:mysql://123.57.181.101:3306/bianwu?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
-#      username: root
-#      password: zxtMySql007
-#      validation-query: SELECT 'x'
 mybatis:
   config-location: classpath:/META-INF/mybatis-config.xml
   mapUnderscoreToCamelCase: true
@@ -40,37 +22,9 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     type: com.zaxxer.hikari.HikariDataSource
 
-
     url: jdbc:mysql://127.0.0.1:3306/bi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&verifyServerCertificate=false&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: Citic12345
-
-
-
-#    url: jdbc:mysql://39.101.177.102:3306/bi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true
-#    username: etc
-#    password: GuiZhouETC@2020
-
-   #    本机服务器
-
-#    url: jdbc:mysql://localhost:3306/bi?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false
-#    username: root
-#    password: Citic12345
-
-#    国创拍卖服务器(不带数据可清空)
-#    url: jdbc:mysql://123.57.181.101:3306/bianwu_shidaitianhua?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true
-#    username: root
-#    password: zxtMySql007
-
-#    国创拍卖服务器(荣德基数据)
-#    url: jdbc:mysql://123.57.181.101:3306/rdj-erp_200318?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true
-#    username: root
-#    password: zxtMySql007
-
-#    荣德基教育测试服务器
-#    url: jdbc:mysql://rm-2zegi47bkhg943qy6.mysql.rds.aliyuncs.com:3306/bianwu_demo?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true
-#    username: rdjerp
-#    password: rdj200318ERP
 
     hikari:
       auto-commit: true

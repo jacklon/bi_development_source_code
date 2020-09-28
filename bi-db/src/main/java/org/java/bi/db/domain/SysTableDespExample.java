@@ -198,75 +198,19 @@ public class SysTableDespExample {
      * @mbg.generated
      */
     protected abstract static class GeneratedCriteria {
-        protected List<Criterion> oltUniqueFieldNamesCriteria;
-
-        protected List<Criterion> oltUniqueFieldDepsCriteria;
-
-        protected List<Criterion> allCriteria;
-
         protected List<Criterion> criteria;
 
         protected GeneratedCriteria() {
             super();
             criteria = new ArrayList<Criterion>();
-            oltUniqueFieldNamesCriteria = new ArrayList<Criterion>();
-            oltUniqueFieldDepsCriteria = new ArrayList<Criterion>();
-        }
-
-        public List<Criterion> getOltUniqueFieldNamesCriteria() {
-            return oltUniqueFieldNamesCriteria;
-        }
-
-        protected void addOltUniqueFieldNamesCriterion(String condition, Object value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            oltUniqueFieldNamesCriteria.add(new Criterion(condition, value, "org.java.bi.db.mybatis.JsonStringArrayTypeHandler"));
-            allCriteria = null;
-        }
-
-        protected void addOltUniqueFieldNamesCriterion(String condition, String[] value1, String[] value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            oltUniqueFieldNamesCriteria.add(new Criterion(condition, value1, value2, "org.java.bi.db.mybatis.JsonStringArrayTypeHandler"));
-            allCriteria = null;
-        }
-
-        public List<Criterion> getOltUniqueFieldDepsCriteria() {
-            return oltUniqueFieldDepsCriteria;
-        }
-
-        protected void addOltUniqueFieldDepsCriterion(String condition, Object value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            oltUniqueFieldDepsCriteria.add(new Criterion(condition, value, "org.java.bi.db.mybatis.JsonStringArrayTypeHandler"));
-            allCriteria = null;
-        }
-
-        protected void addOltUniqueFieldDepsCriterion(String condition, String[] value1, String[] value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            oltUniqueFieldDepsCriteria.add(new Criterion(condition, value1, value2, "org.java.bi.db.mybatis.JsonStringArrayTypeHandler"));
-            allCriteria = null;
         }
 
         public boolean isValid() {
-            return criteria.size() > 0
-                || oltUniqueFieldNamesCriteria.size() > 0
-                || oltUniqueFieldDepsCriteria.size() > 0;
+            return criteria.size() > 0;
         }
 
         public List<Criterion> getAllCriteria() {
-            if (allCriteria == null) {
-                allCriteria = new ArrayList<Criterion>();
-                allCriteria.addAll(criteria);
-                allCriteria.addAll(oltUniqueFieldNamesCriteria);
-                allCriteria.addAll(oltUniqueFieldDepsCriteria);
-            }
-            return allCriteria;
+            return criteria;
         }
 
         public List<Criterion> getCriteria() {
@@ -278,7 +222,6 @@ public class SysTableDespExample {
                 throw new RuntimeException("Value for condition cannot be null");
             }
             criteria.add(new Criterion(condition));
-            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value, String property) {
@@ -286,7 +229,6 @@ public class SysTableDespExample {
                 throw new RuntimeException("Value for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value));
-            allCriteria = null;
         }
 
         protected void addCriterion(String condition, Object value1, Object value2, String property) {
@@ -294,7 +236,6 @@ public class SysTableDespExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-            allCriteria = null;
         }
 
         public Criteria andIdIsNull() {
@@ -429,35 +370,18 @@ public class SysTableDespExample {
             return (Criteria) this;
         }
 
-        public Criteria andOltTableDespIsNull() {
-            addCriterion("olt_table_desp is null");
+        public Criteria andDbNameIsNull() {
+            addCriterion("db_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andOltTableDespIsNotNull() {
-            addCriterion("olt_table_desp is not null");
+        public Criteria andDbNameIsNotNull() {
+            addCriterion("db_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOltTableDespEqualTo(String value) {
-            addCriterion("olt_table_desp =", value, "oltTableDesp");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltTableDespEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_table_desp = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltTableDespNotEqualTo(String value) {
-            addCriterion("olt_table_desp <>", value, "oltTableDesp");
+        public Criteria andDbNameEqualTo(String value) {
+            addCriterion("db_name =", value, "dbName");
             return (Criteria) this;
         }
 
@@ -468,30 +392,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltTableDespNotEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_table_desp <> ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbNameEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_name = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltTableDespGreaterThan(String value) {
-            addCriterion("olt_table_desp >", value, "oltTableDesp");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltTableDespGreaterThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_table_desp > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltTableDespGreaterThanOrEqualTo(String value) {
-            addCriterion("olt_table_desp >=", value, "oltTableDesp");
+        public Criteria andDbNameNotEqualTo(String value) {
+            addCriterion("db_name <>", value, "dbName");
             return (Criteria) this;
         }
 
@@ -502,30 +409,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltTableDespGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_table_desp >= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbNameNotEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_name <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltTableDespLessThan(String value) {
-            addCriterion("olt_table_desp <", value, "oltTableDesp");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltTableDespLessThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_table_desp < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltTableDespLessThanOrEqualTo(String value) {
-            addCriterion("olt_table_desp <=", value, "oltTableDesp");
+        public Criteria andDbNameGreaterThan(String value) {
+            addCriterion("db_name >", value, "dbName");
             return (Criteria) this;
         }
 
@@ -536,53 +426,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltTableDespLessThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_table_desp <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbNameGreaterThanColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_name > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltTableDespLike(String value) {
-            addCriterion("olt_table_desp like", value, "oltTableDesp");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltTableDespNotLike(String value) {
-            addCriterion("olt_table_desp not like", value, "oltTableDesp");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltTableDespIn(List<String> values) {
-            addCriterion("olt_table_desp in", values, "oltTableDesp");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltTableDespNotIn(List<String> values) {
-            addCriterion("olt_table_desp not in", values, "oltTableDesp");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltTableDespBetween(String value1, String value2) {
-            addCriterion("olt_table_desp between", value1, value2, "oltTableDesp");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltTableDespNotBetween(String value1, String value2) {
-            addCriterion("olt_table_desp not between", value1, value2, "oltTableDesp");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltPrimaryFieldNameIsNull() {
-            addCriterion("olt_primary_field_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltPrimaryFieldNameIsNotNull() {
-            addCriterion("olt_primary_field_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltPrimaryFieldNameEqualTo(String value) {
-            addCriterion("olt_primary_field_name =", value, "oltPrimaryFieldName");
+        public Criteria andDbNameGreaterThanOrEqualTo(String value) {
+            addCriterion("db_name >=", value, "dbName");
             return (Criteria) this;
         }
 
@@ -593,30 +443,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltPrimaryFieldNameEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_primary_field_name = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbNameGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_name >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltPrimaryFieldNameNotEqualTo(String value) {
-            addCriterion("olt_primary_field_name <>", value, "oltPrimaryFieldName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltPrimaryFieldNameNotEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_primary_field_name <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltPrimaryFieldNameGreaterThan(String value) {
-            addCriterion("olt_primary_field_name >", value, "oltPrimaryFieldName");
+        public Criteria andDbNameLessThan(String value) {
+            addCriterion("db_name <", value, "dbName");
             return (Criteria) this;
         }
 
@@ -627,30 +460,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltPrimaryFieldNameGreaterThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_primary_field_name > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbNameLessThanColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_name < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltPrimaryFieldNameGreaterThanOrEqualTo(String value) {
-            addCriterion("olt_primary_field_name >=", value, "oltPrimaryFieldName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltPrimaryFieldNameGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_primary_field_name >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltPrimaryFieldNameLessThan(String value) {
-            addCriterion("olt_primary_field_name <", value, "oltPrimaryFieldName");
+        public Criteria andDbNameLessThanOrEqualTo(String value) {
+            addCriterion("db_name <=", value, "dbName");
             return (Criteria) this;
         }
 
@@ -661,70 +477,53 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltPrimaryFieldNameLessThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_primary_field_name < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbNameLessThanOrEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_name <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltPrimaryFieldNameLessThanOrEqualTo(String value) {
-            addCriterion("olt_primary_field_name <=", value, "oltPrimaryFieldName");
+        public Criteria andDbNameLike(String value) {
+            addCriterion("db_name like", value, "dbName");
             return (Criteria) this;
         }
 
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltPrimaryFieldNameLessThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_primary_field_name <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbNameNotLike(String value) {
+            addCriterion("db_name not like", value, "dbName");
             return (Criteria) this;
         }
 
-        public Criteria andOltPrimaryFieldNameLike(String value) {
-            addCriterion("olt_primary_field_name like", value, "oltPrimaryFieldName");
+        public Criteria andDbNameIn(List<String> values) {
+            addCriterion("db_name in", values, "dbName");
             return (Criteria) this;
         }
 
-        public Criteria andOltPrimaryFieldNameNotLike(String value) {
-            addCriterion("olt_primary_field_name not like", value, "oltPrimaryFieldName");
+        public Criteria andDbNameNotIn(List<String> values) {
+            addCriterion("db_name not in", values, "dbName");
             return (Criteria) this;
         }
 
-        public Criteria andOltPrimaryFieldNameIn(List<String> values) {
-            addCriterion("olt_primary_field_name in", values, "oltPrimaryFieldName");
+        public Criteria andDbNameBetween(String value1, String value2) {
+            addCriterion("db_name between", value1, value2, "dbName");
             return (Criteria) this;
         }
 
-        public Criteria andOltPrimaryFieldNameNotIn(List<String> values) {
-            addCriterion("olt_primary_field_name not in", values, "oltPrimaryFieldName");
+        public Criteria andDbNameNotBetween(String value1, String value2) {
+            addCriterion("db_name not between", value1, value2, "dbName");
             return (Criteria) this;
         }
 
-        public Criteria andOltPrimaryFieldNameBetween(String value1, String value2) {
-            addCriterion("olt_primary_field_name between", value1, value2, "oltPrimaryFieldName");
+        public Criteria andDbTableOrViewNameIsNull() {
+            addCriterion("db_table_or_view_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andOltPrimaryFieldNameNotBetween(String value1, String value2) {
-            addCriterion("olt_primary_field_name not between", value1, value2, "oltPrimaryFieldName");
+        public Criteria andDbTableOrViewNameIsNotNull() {
+            addCriterion("db_table_or_view_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOltRemarkIsNull() {
-            addCriterion("olt_remark is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltRemarkIsNotNull() {
-            addCriterion("olt_remark is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltRemarkEqualTo(String value) {
-            addCriterion("olt_remark =", value, "oltRemark");
+        public Criteria andDbTableOrViewNameEqualTo(String value) {
+            addCriterion("db_table_or_view_name =", value, "dbTableOrViewName");
             return (Criteria) this;
         }
 
@@ -735,30 +534,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltRemarkEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_remark = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbTableOrViewNameEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_table_or_view_name = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltRemarkNotEqualTo(String value) {
-            addCriterion("olt_remark <>", value, "oltRemark");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltRemarkNotEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_remark <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltRemarkGreaterThan(String value) {
-            addCriterion("olt_remark >", value, "oltRemark");
+        public Criteria andDbTableOrViewNameNotEqualTo(String value) {
+            addCriterion("db_table_or_view_name <>", value, "dbTableOrViewName");
             return (Criteria) this;
         }
 
@@ -769,30 +551,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltRemarkGreaterThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_remark > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbTableOrViewNameNotEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_table_or_view_name <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltRemarkGreaterThanOrEqualTo(String value) {
-            addCriterion("olt_remark >=", value, "oltRemark");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltRemarkGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_remark >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltRemarkLessThan(String value) {
-            addCriterion("olt_remark <", value, "oltRemark");
+        public Criteria andDbTableOrViewNameGreaterThan(String value) {
+            addCriterion("db_table_or_view_name >", value, "dbTableOrViewName");
             return (Criteria) this;
         }
 
@@ -803,70 +568,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltRemarkLessThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_remark < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbTableOrViewNameGreaterThanColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_table_or_view_name > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltRemarkLessThanOrEqualTo(String value) {
-            addCriterion("olt_remark <=", value, "oltRemark");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltRemarkLessThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_remark <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltRemarkLike(String value) {
-            addCriterion("olt_remark like", value, "oltRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltRemarkNotLike(String value) {
-            addCriterion("olt_remark not like", value, "oltRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltRemarkIn(List<String> values) {
-            addCriterion("olt_remark in", values, "oltRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltRemarkNotIn(List<String> values) {
-            addCriterion("olt_remark not in", values, "oltRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltRemarkBetween(String value1, String value2) {
-            addCriterion("olt_remark between", value1, value2, "oltRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltRemarkNotBetween(String value1, String value2) {
-            addCriterion("olt_remark not between", value1, value2, "oltRemark");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltParentIdIsNull() {
-            addCriterion("olt_parent_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltParentIdIsNotNull() {
-            addCriterion("olt_parent_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltParentIdEqualTo(Integer value) {
-            addCriterion("olt_parent_id =", value, "oltParentId");
+        public Criteria andDbTableOrViewNameGreaterThanOrEqualTo(String value) {
+            addCriterion("db_table_or_view_name >=", value, "dbTableOrViewName");
             return (Criteria) this;
         }
 
@@ -877,30 +585,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltParentIdEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_parent_id = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbTableOrViewNameGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_table_or_view_name >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltParentIdNotEqualTo(Integer value) {
-            addCriterion("olt_parent_id <>", value, "oltParentId");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltParentIdNotEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_parent_id <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltParentIdGreaterThan(Integer value) {
-            addCriterion("olt_parent_id >", value, "oltParentId");
+        public Criteria andDbTableOrViewNameLessThan(String value) {
+            addCriterion("db_table_or_view_name <", value, "dbTableOrViewName");
             return (Criteria) this;
         }
 
@@ -911,30 +602,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltParentIdGreaterThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_parent_id > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbTableOrViewNameLessThanColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_table_or_view_name < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltParentIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("olt_parent_id >=", value, "oltParentId");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltParentIdGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_parent_id >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltParentIdLessThan(Integer value) {
-            addCriterion("olt_parent_id <", value, "oltParentId");
+        public Criteria andDbTableOrViewNameLessThanOrEqualTo(String value) {
+            addCriterion("db_table_or_view_name <=", value, "dbTableOrViewName");
             return (Criteria) this;
         }
 
@@ -945,60 +619,53 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltParentIdLessThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_parent_id < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbTableOrViewNameLessThanOrEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("db_table_or_view_name <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltParentIdLessThanOrEqualTo(Integer value) {
-            addCriterion("olt_parent_id <=", value, "oltParentId");
+        public Criteria andDbTableOrViewNameLike(String value) {
+            addCriterion("db_table_or_view_name like", value, "dbTableOrViewName");
             return (Criteria) this;
         }
 
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltParentIdLessThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_parent_id <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andDbTableOrViewNameNotLike(String value) {
+            addCriterion("db_table_or_view_name not like", value, "dbTableOrViewName");
             return (Criteria) this;
         }
 
-        public Criteria andOltParentIdIn(List<Integer> values) {
-            addCriterion("olt_parent_id in", values, "oltParentId");
+        public Criteria andDbTableOrViewNameIn(List<String> values) {
+            addCriterion("db_table_or_view_name in", values, "dbTableOrViewName");
             return (Criteria) this;
         }
 
-        public Criteria andOltParentIdNotIn(List<Integer> values) {
-            addCriterion("olt_parent_id not in", values, "oltParentId");
+        public Criteria andDbTableOrViewNameNotIn(List<String> values) {
+            addCriterion("db_table_or_view_name not in", values, "dbTableOrViewName");
             return (Criteria) this;
         }
 
-        public Criteria andOltParentIdBetween(Integer value1, Integer value2) {
-            addCriterion("olt_parent_id between", value1, value2, "oltParentId");
+        public Criteria andDbTableOrViewNameBetween(String value1, String value2) {
+            addCriterion("db_table_or_view_name between", value1, value2, "dbTableOrViewName");
             return (Criteria) this;
         }
 
-        public Criteria andOltParentIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("olt_parent_id not between", value1, value2, "oltParentId");
+        public Criteria andDbTableOrViewNameNotBetween(String value1, String value2) {
+            addCriterion("db_table_or_view_name not between", value1, value2, "dbTableOrViewName");
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldNamesIsNull() {
-            addCriterion("olt_unique_field_names is null");
+        public Criteria andChineseDescIsNull() {
+            addCriterion("chinese_desc is null");
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldNamesIsNotNull() {
-            addCriterion("olt_unique_field_names is not null");
+        public Criteria andChineseDescIsNotNull() {
+            addCriterion("chinese_desc is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldNamesEqualTo(String[] value) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names =", value, "oltUniqueFieldNames");
+        public Criteria andChineseDescEqualTo(String value) {
+            addCriterion("chinese_desc =", value, "chineseDesc");
             return (Criteria) this;
         }
 
@@ -1009,30 +676,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltUniqueFieldNamesEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_names = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andChineseDescEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("chinese_desc = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldNamesNotEqualTo(String[] value) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names <>", value, "oltUniqueFieldNames");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltUniqueFieldNamesNotEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_names <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldNamesGreaterThan(String[] value) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names >", value, "oltUniqueFieldNames");
+        public Criteria andChineseDescNotEqualTo(String value) {
+            addCriterion("chinese_desc <>", value, "chineseDesc");
             return (Criteria) this;
         }
 
@@ -1043,30 +693,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltUniqueFieldNamesGreaterThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_names > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andChineseDescNotEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("chinese_desc <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldNamesGreaterThanOrEqualTo(String[] value) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names >=", value, "oltUniqueFieldNames");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltUniqueFieldNamesGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_names >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldNamesLessThan(String[] value) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names <", value, "oltUniqueFieldNames");
+        public Criteria andChineseDescGreaterThan(String value) {
+            addCriterion("chinese_desc >", value, "chineseDesc");
             return (Criteria) this;
         }
 
@@ -1077,70 +710,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltUniqueFieldNamesLessThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_names < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andChineseDescGreaterThanColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("chinese_desc > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldNamesLessThanOrEqualTo(String[] value) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names <=", value, "oltUniqueFieldNames");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltUniqueFieldNamesLessThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_names <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldNamesLike(String[] value) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names like", value, "oltUniqueFieldNames");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldNamesNotLike(String[] value) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names not like", value, "oltUniqueFieldNames");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldNamesIn(List<String[]> values) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names in", values, "oltUniqueFieldNames");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldNamesNotIn(List<String[]> values) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names not in", values, "oltUniqueFieldNames");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldNamesBetween(String[] value1, String[] value2) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names between", value1, value2, "oltUniqueFieldNames");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldNamesNotBetween(String[] value1, String[] value2) {
-            addOltUniqueFieldNamesCriterion("olt_unique_field_names not between", value1, value2, "oltUniqueFieldNames");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldDepsIsNull() {
-            addCriterion("olt_unique_field_deps is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldDepsIsNotNull() {
-            addCriterion("olt_unique_field_deps is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldDepsEqualTo(String[] value) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps =", value, "oltUniqueFieldDeps");
+        public Criteria andChineseDescGreaterThanOrEqualTo(String value) {
+            addCriterion("chinese_desc >=", value, "chineseDesc");
             return (Criteria) this;
         }
 
@@ -1151,30 +727,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltUniqueFieldDepsEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_deps = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andChineseDescGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("chinese_desc >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldDepsNotEqualTo(String[] value) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps <>", value, "oltUniqueFieldDeps");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltUniqueFieldDepsNotEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_deps <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldDepsGreaterThan(String[] value) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps >", value, "oltUniqueFieldDeps");
+        public Criteria andChineseDescLessThan(String value) {
+            addCriterion("chinese_desc <", value, "chineseDesc");
             return (Criteria) this;
         }
 
@@ -1185,30 +744,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltUniqueFieldDepsGreaterThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_deps > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andChineseDescLessThanColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("chinese_desc < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldDepsGreaterThanOrEqualTo(String[] value) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps >=", value, "oltUniqueFieldDeps");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltUniqueFieldDepsGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_deps >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltUniqueFieldDepsLessThan(String[] value) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps <", value, "oltUniqueFieldDeps");
+        public Criteria andChineseDescLessThanOrEqualTo(String value) {
+            addCriterion("chinese_desc <=", value, "chineseDesc");
             return (Criteria) this;
         }
 
@@ -1219,70 +761,53 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltUniqueFieldDepsLessThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_deps < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andChineseDescLessThanOrEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("chinese_desc <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldDepsLessThanOrEqualTo(String[] value) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps <=", value, "oltUniqueFieldDeps");
+        public Criteria andChineseDescLike(String value) {
+            addCriterion("chinese_desc like", value, "chineseDesc");
             return (Criteria) this;
         }
 
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltUniqueFieldDepsLessThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_unique_field_deps <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andChineseDescNotLike(String value) {
+            addCriterion("chinese_desc not like", value, "chineseDesc");
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldDepsLike(String[] value) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps like", value, "oltUniqueFieldDeps");
+        public Criteria andChineseDescIn(List<String> values) {
+            addCriterion("chinese_desc in", values, "chineseDesc");
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldDepsNotLike(String[] value) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps not like", value, "oltUniqueFieldDeps");
+        public Criteria andChineseDescNotIn(List<String> values) {
+            addCriterion("chinese_desc not in", values, "chineseDesc");
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldDepsIn(List<String[]> values) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps in", values, "oltUniqueFieldDeps");
+        public Criteria andChineseDescBetween(String value1, String value2) {
+            addCriterion("chinese_desc between", value1, value2, "chineseDesc");
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldDepsNotIn(List<String[]> values) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps not in", values, "oltUniqueFieldDeps");
+        public Criteria andChineseDescNotBetween(String value1, String value2) {
+            addCriterion("chinese_desc not between", value1, value2, "chineseDesc");
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldDepsBetween(String[] value1, String[] value2) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps between", value1, value2, "oltUniqueFieldDeps");
+        public Criteria andPrimaryFieldNameIsNull() {
+            addCriterion("primary_field_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andOltUniqueFieldDepsNotBetween(String[] value1, String[] value2) {
-            addOltUniqueFieldDepsCriterion("olt_unique_field_deps not between", value1, value2, "oltUniqueFieldDeps");
+        public Criteria andPrimaryFieldNameIsNotNull() {
+            addCriterion("primary_field_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andOltForeignFieldNameIsNull() {
-            addCriterion("olt_foreign_field_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldNameIsNotNull() {
-            addCriterion("olt_foreign_field_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldNameEqualTo(String value) {
-            addCriterion("olt_foreign_field_name =", value, "oltForeignFieldName");
+        public Criteria andPrimaryFieldNameEqualTo(String value) {
+            addCriterion("primary_field_name =", value, "primaryFieldName");
             return (Criteria) this;
         }
 
@@ -1293,30 +818,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltForeignFieldNameEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_name = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPrimaryFieldNameEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("primary_field_name = ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltForeignFieldNameNotEqualTo(String value) {
-            addCriterion("olt_foreign_field_name <>", value, "oltForeignFieldName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltForeignFieldNameNotEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_name <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldNameGreaterThan(String value) {
-            addCriterion("olt_foreign_field_name >", value, "oltForeignFieldName");
+        public Criteria andPrimaryFieldNameNotEqualTo(String value) {
+            addCriterion("primary_field_name <>", value, "primaryFieldName");
             return (Criteria) this;
         }
 
@@ -1327,30 +835,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltForeignFieldNameGreaterThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_name > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPrimaryFieldNameNotEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("primary_field_name <> ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltForeignFieldNameGreaterThanOrEqualTo(String value) {
-            addCriterion("olt_foreign_field_name >=", value, "oltForeignFieldName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltForeignFieldNameGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_name >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldNameLessThan(String value) {
-            addCriterion("olt_foreign_field_name <", value, "oltForeignFieldName");
+        public Criteria andPrimaryFieldNameGreaterThan(String value) {
+            addCriterion("primary_field_name >", value, "primaryFieldName");
             return (Criteria) this;
         }
 
@@ -1361,70 +852,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltForeignFieldNameLessThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_name < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPrimaryFieldNameGreaterThanColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("primary_field_name > ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltForeignFieldNameLessThanOrEqualTo(String value) {
-            addCriterion("olt_foreign_field_name <=", value, "oltForeignFieldName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltForeignFieldNameLessThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_name <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldNameLike(String value) {
-            addCriterion("olt_foreign_field_name like", value, "oltForeignFieldName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldNameNotLike(String value) {
-            addCriterion("olt_foreign_field_name not like", value, "oltForeignFieldName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldNameIn(List<String> values) {
-            addCriterion("olt_foreign_field_name in", values, "oltForeignFieldName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldNameNotIn(List<String> values) {
-            addCriterion("olt_foreign_field_name not in", values, "oltForeignFieldName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldNameBetween(String value1, String value2) {
-            addCriterion("olt_foreign_field_name between", value1, value2, "oltForeignFieldName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldNameNotBetween(String value1, String value2) {
-            addCriterion("olt_foreign_field_name not between", value1, value2, "oltForeignFieldName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldDesIsNull() {
-            addCriterion("olt_foreign_field_des is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldDesIsNotNull() {
-            addCriterion("olt_foreign_field_des is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldDesEqualTo(String value) {
-            addCriterion("olt_foreign_field_des =", value, "oltForeignFieldDes");
+        public Criteria andPrimaryFieldNameGreaterThanOrEqualTo(String value) {
+            addCriterion("primary_field_name >=", value, "primaryFieldName");
             return (Criteria) this;
         }
 
@@ -1435,30 +869,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltForeignFieldDesEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_des = ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPrimaryFieldNameGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("primary_field_name >= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltForeignFieldDesNotEqualTo(String value) {
-            addCriterion("olt_foreign_field_des <>", value, "oltForeignFieldDes");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltForeignFieldDesNotEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_des <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldDesGreaterThan(String value) {
-            addCriterion("olt_foreign_field_des >", value, "oltForeignFieldDes");
+        public Criteria andPrimaryFieldNameLessThan(String value) {
+            addCriterion("primary_field_name <", value, "primaryFieldName");
             return (Criteria) this;
         }
 
@@ -1469,30 +886,13 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltForeignFieldDesGreaterThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_des > ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPrimaryFieldNameLessThanColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("primary_field_name < ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltForeignFieldDesGreaterThanOrEqualTo(String value) {
-            addCriterion("olt_foreign_field_des >=", value, "oltForeignFieldDes");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltForeignFieldDesGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_des >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldDesLessThan(String value) {
-            addCriterion("olt_foreign_field_des <", value, "oltForeignFieldDes");
+        public Criteria andPrimaryFieldNameLessThanOrEqualTo(String value) {
+            addCriterion("primary_field_name <=", value, "primaryFieldName");
             return (Criteria) this;
         }
 
@@ -1503,55 +903,38 @@ public class SysTableDespExample {
          * @mbg.generated
          * @project https://github.com/itfsw/mybatis-generator-plugin
          */
-        public Criteria andOltForeignFieldDesLessThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_des < ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPrimaryFieldNameLessThanOrEqualToColumn(SysTableDesp.Column column) {
+            addCriterion(new StringBuilder("primary_field_name <= ").append(column.getEscapedColumnName()).toString());
             return (Criteria) this;
         }
 
-        public Criteria andOltForeignFieldDesLessThanOrEqualTo(String value) {
-            addCriterion("olt_foreign_field_des <=", value, "oltForeignFieldDes");
+        public Criteria andPrimaryFieldNameLike(String value) {
+            addCriterion("primary_field_name like", value, "primaryFieldName");
             return (Criteria) this;
         }
 
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltForeignFieldDesLessThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_foreign_field_des <= ").append(column.getEscapedColumnName()).toString());
+        public Criteria andPrimaryFieldNameNotLike(String value) {
+            addCriterion("primary_field_name not like", value, "primaryFieldName");
             return (Criteria) this;
         }
 
-        public Criteria andOltForeignFieldDesLike(String value) {
-            addCriterion("olt_foreign_field_des like", value, "oltForeignFieldDes");
+        public Criteria andPrimaryFieldNameIn(List<String> values) {
+            addCriterion("primary_field_name in", values, "primaryFieldName");
             return (Criteria) this;
         }
 
-        public Criteria andOltForeignFieldDesNotLike(String value) {
-            addCriterion("olt_foreign_field_des not like", value, "oltForeignFieldDes");
+        public Criteria andPrimaryFieldNameNotIn(List<String> values) {
+            addCriterion("primary_field_name not in", values, "primaryFieldName");
             return (Criteria) this;
         }
 
-        public Criteria andOltForeignFieldDesIn(List<String> values) {
-            addCriterion("olt_foreign_field_des in", values, "oltForeignFieldDes");
+        public Criteria andPrimaryFieldNameBetween(String value1, String value2) {
+            addCriterion("primary_field_name between", value1, value2, "primaryFieldName");
             return (Criteria) this;
         }
 
-        public Criteria andOltForeignFieldDesNotIn(List<String> values) {
-            addCriterion("olt_foreign_field_des not in", values, "oltForeignFieldDes");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldDesBetween(String value1, String value2) {
-            addCriterion("olt_foreign_field_des between", value1, value2, "oltForeignFieldDes");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltForeignFieldDesNotBetween(String value1, String value2) {
-            addCriterion("olt_foreign_field_des not between", value1, value2, "oltForeignFieldDes");
+        public Criteria andPrimaryFieldNameNotBetween(String value1, String value2) {
+            addCriterion("primary_field_name not between", value1, value2, "primaryFieldName");
             return (Criteria) this;
         }
 
@@ -1684,432 +1067,6 @@ public class SysTableDespExample {
 
         public Criteria andOrdernumberNotBetween(Integer value1, Integer value2) {
             addCriterion("ordernumber not between", value1, value2, "ordernumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameIsNull() {
-            addCriterion("olt_db_talbe_view_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameIsNotNull() {
-            addCriterion("olt_db_talbe_view_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameEqualTo(String value) {
-            addCriterion("olt_db_talbe_view_name =", value, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewNameEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_name = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameNotEqualTo(String value) {
-            addCriterion("olt_db_talbe_view_name <>", value, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewNameNotEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_name <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameGreaterThan(String value) {
-            addCriterion("olt_db_talbe_view_name >", value, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewNameGreaterThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_name > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameGreaterThanOrEqualTo(String value) {
-            addCriterion("olt_db_talbe_view_name >=", value, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewNameGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_name >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameLessThan(String value) {
-            addCriterion("olt_db_talbe_view_name <", value, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewNameLessThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_name < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameLessThanOrEqualTo(String value) {
-            addCriterion("olt_db_talbe_view_name <=", value, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewNameLessThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_name <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameLike(String value) {
-            addCriterion("olt_db_talbe_view_name like", value, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameNotLike(String value) {
-            addCriterion("olt_db_talbe_view_name not like", value, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameIn(List<String> values) {
-            addCriterion("olt_db_talbe_view_name in", values, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameNotIn(List<String> values) {
-            addCriterion("olt_db_talbe_view_name not in", values, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameBetween(String value1, String value2) {
-            addCriterion("olt_db_talbe_view_name between", value1, value2, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewNameNotBetween(String value1, String value2) {
-            addCriterion("olt_db_talbe_view_name not between", value1, value2, "oltDbTalbeViewName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescIsNull() {
-            addCriterion("olt_db_talbe_view_desc is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescIsNotNull() {
-            addCriterion("olt_db_talbe_view_desc is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescEqualTo(String value) {
-            addCriterion("olt_db_talbe_view_desc =", value, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewDescEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_desc = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescNotEqualTo(String value) {
-            addCriterion("olt_db_talbe_view_desc <>", value, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewDescNotEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_desc <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescGreaterThan(String value) {
-            addCriterion("olt_db_talbe_view_desc >", value, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewDescGreaterThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_desc > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescGreaterThanOrEqualTo(String value) {
-            addCriterion("olt_db_talbe_view_desc >=", value, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewDescGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_desc >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescLessThan(String value) {
-            addCriterion("olt_db_talbe_view_desc <", value, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewDescLessThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_desc < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescLessThanOrEqualTo(String value) {
-            addCriterion("olt_db_talbe_view_desc <=", value, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltDbTalbeViewDescLessThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_db_talbe_view_desc <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescLike(String value) {
-            addCriterion("olt_db_talbe_view_desc like", value, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescNotLike(String value) {
-            addCriterion("olt_db_talbe_view_desc not like", value, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescIn(List<String> values) {
-            addCriterion("olt_db_talbe_view_desc in", values, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescNotIn(List<String> values) {
-            addCriterion("olt_db_talbe_view_desc not in", values, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescBetween(String value1, String value2) {
-            addCriterion("olt_db_talbe_view_desc between", value1, value2, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltDbTalbeViewDescNotBetween(String value1, String value2) {
-            addCriterion("olt_db_talbe_view_desc not between", value1, value2, "oltDbTalbeViewDesc");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameIsNull() {
-            addCriterion("olt_json_package_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameIsNotNull() {
-            addCriterion("olt_json_package_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameEqualTo(String value) {
-            addCriterion("olt_json_package_name =", value, "oltJsonPackageName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltJsonPackageNameEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_json_package_name = ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameNotEqualTo(String value) {
-            addCriterion("olt_json_package_name <>", value, "oltJsonPackageName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltJsonPackageNameNotEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_json_package_name <> ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameGreaterThan(String value) {
-            addCriterion("olt_json_package_name >", value, "oltJsonPackageName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltJsonPackageNameGreaterThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_json_package_name > ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameGreaterThanOrEqualTo(String value) {
-            addCriterion("olt_json_package_name >=", value, "oltJsonPackageName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltJsonPackageNameGreaterThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_json_package_name >= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameLessThan(String value) {
-            addCriterion("olt_json_package_name <", value, "oltJsonPackageName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltJsonPackageNameLessThanColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_json_package_name < ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameLessThanOrEqualTo(String value) {
-            addCriterion("olt_json_package_name <=", value, "oltJsonPackageName");
-            return (Criteria) this;
-        }
-
-        /**
-         * This method was generated by MyBatis Generator.
-         * This method corresponds to the database table sys_table_desp
-         *
-         * @mbg.generated
-         * @project https://github.com/itfsw/mybatis-generator-plugin
-         */
-        public Criteria andOltJsonPackageNameLessThanOrEqualToColumn(SysTableDesp.Column column) {
-            addCriterion(new StringBuilder("olt_json_package_name <= ").append(column.getEscapedColumnName()).toString());
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameLike(String value) {
-            addCriterion("olt_json_package_name like", value, "oltJsonPackageName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameNotLike(String value) {
-            addCriterion("olt_json_package_name not like", value, "oltJsonPackageName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameIn(List<String> values) {
-            addCriterion("olt_json_package_name in", values, "oltJsonPackageName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameNotIn(List<String> values) {
-            addCriterion("olt_json_package_name not in", values, "oltJsonPackageName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameBetween(String value1, String value2) {
-            addCriterion("olt_json_package_name between", value1, value2, "oltJsonPackageName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOltJsonPackageNameNotBetween(String value1, String value2) {
-            addCriterion("olt_json_package_name not between", value1, value2, "oltJsonPackageName");
             return (Criteria) this;
         }
 

@@ -3,7 +3,7 @@
         <div class="menu-logo_wrap">
             <!--            <img src="../logo.svg" class="menu-logo"/>-->
             <div class="menu-title">
-                <div class="menu-main_title">劲远智能(Do Want You Do)</div>
+                <div class="menu-main_title">BI智能(Do Want You Do)</div>
 
             </div>
         </div>

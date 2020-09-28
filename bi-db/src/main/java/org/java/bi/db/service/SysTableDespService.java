@@ -37,25 +37,28 @@ public class SysTableDespService {
         return sysTableDespMapper.selectByExample(example);
     }
 
-    public List<SysTableDesp> querySelective(String oltTableDesp,
-        String olfFieldName,String olfFieldDesp,Integer page,Integer limit,String sort){
+    public List<SysTableDesp> querySelective(String dbTableOrViewName,String chineseDesc,
+        String fieldName,String fieldChineseDesp,Integer page,Integer limit,String sort){
         SysTableDespExample example=new SysTableDespExample();
         SysTableDespExample.Criteria criteria=example.createCriteria();
-        if(!StringUtils.isEmpty(oltTableDesp)){
-            criteria.andOltTableDespLike("%"+oltTableDesp+"%");
+        if(!StringUtils.isEmpty(dbTableOrViewName)){
+            criteria.andDbTableOrViewNameLike("%"+dbTableOrViewName+"%");
         }
-        if(!StringUtils.isEmpty(olfFieldName)||!StringUtils.isEmpty(olfFieldDesp)){
+        if(!StringUtils.isEmpty(chineseDesc)){
+            criteria.andChineseDescLike("%"+chineseDesc+"%");
+        }
+        if(!StringUtils.isEmpty(fieldName)||!StringUtils.isEmpty(fieldChineseDesp)){
             SysTableFieldDespExample fieldExample=new SysTableFieldDespExample();
             SysTableFieldDespExample.Criteria fieldCriteria=fieldExample.createCriteria();
-            if(!StringUtils.isEmpty(olfFieldName)){
-                fieldCriteria.andOlfFieldNameEqualTo(olfFieldName);
+            if(!StringUtils.isEmpty(fieldName)){
+                fieldCriteria.andFieldNameEqualTo(fieldName);
             }
-            if(!StringUtils.isEmpty(olfFieldDesp)){
-                fieldCriteria.andOlfFieldDespLike("%"+olfFieldDesp+"%");
+            if(!StringUtils.isEmpty(fieldChineseDesp)){
+                fieldCriteria.andFieldChineseDespLike("%"+fieldChineseDesp+"%");
             }
             criteria.andDeletedEqualTo(false);
             List<SysTableFieldDesp> sysTableFieldDespList= sysTableFieldDespMapper.selectByExample(fieldExample);
-            List<Integer> mainIdList=sysTableFieldDespList.stream().map(SysTableFieldDesp::getOltId).distinct().collect(Collectors.toList());
+            List<Integer> mainIdList=sysTableFieldDespList.stream().map(SysTableFieldDesp::getStdId).distinct().collect(Collectors.toList());
             if(mainIdList!=null&&mainIdList.size()>0){
                 criteria.andIdIn(mainIdList);
             }else
@@ -103,7 +106,7 @@ public class SysTableDespService {
         } else
         {
             if(!StringUtils.isEmpty(desp)){
-                criteria.andOltTableDespEqualTo(desp);
+                criteria.andChineseDescEqualTo(desp);
             }
         }
         criteria.andDeletedEqualTo(false);
@@ -111,50 +114,10 @@ public class SysTableDespService {
         return sysTableDespMapper.selectOneByExample(example);
     }
 
-    /**
-     * 根据表的外键获取所有有关联表及删除语句
-     * @param result
-     * @param userName
-     * @param parentOltId
-     * @param parentDataId
-     */
-
-    public void getCascadeDeleteSqlByOltParentId(List result,String userName,Integer parentOltId,Integer parentDataId,Integer deleted) {
-        SysTableDespExample example = new SysTableDespExample();
-        SysTableDespExample.Criteria criteria=example.createCriteria();
-        if(!StringUtils.isEmpty(parentOltId)){
-            criteria.andOltParentIdEqualTo(parentOltId);
-        }
-        criteria.andDeletedEqualTo(false);
-        //进行递归处理
-        List<SysTableDesp> sysTableDespList= sysTableDespMapper.selectByExample(example);
-
-        for (SysTableDesp sysTableDesp : sysTableDespList) {
-            String strSql = "update " + sysTableDesp.getOltDbTalbeViewName() + " set deleted="+deleted+",update_time=now(),update_by='" +
-                    userName + "' where " + sysTableDesp.getOltForeignFieldName() + "=" + parentDataId;
-            result.add(strSql);
-
-
-            String strSelectSql = "select id from " + sysTableDesp.getOltDbTalbeViewName() +
-                    " where " + sysTableDesp.getOltForeignFieldName() + "=" + parentDataId;
-            Map<String, Object> param = new HashMap<>();
-            param.put("sqlS", strSelectSql);
-            List dataList = commonDBService.procedureDaoList(param);
-
-            if (dataList != null && dataList.size() > 0) {
-                for (int ii = 0; ii < dataList.size(); ii++) {
-                    Map<String, Integer> mapArray = (Map<String, Integer>) dataList.get(ii);
-                    Integer dataId=mapArray.get("id");
-                    getCascadeDeleteSqlByOltParentId(result, userName, sysTableDesp.getId(), dataId,deleted);
-                }
-            }
-        }
-    }
-
 
     public boolean checkExistByName(String name) {
         SysTableDespExample example = new SysTableDespExample();
-        example.or().andOltTableDespEqualTo(name).andDeletedEqualTo(false);
+        example.or().andChineseDescEqualTo(name).andDeletedEqualTo(false);
         return sysTableDespMapper.countByExample(example) != 0;
     }
 }

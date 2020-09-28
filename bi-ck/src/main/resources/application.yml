@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: ck
+  messages:
+    encoding: UTF-8
+logging:
+  level:
+    root:  ERROR
+    org.springframework:  ERROR
+    org.mybatis:  ERROR
+    org.java.bi.db:  DEBUG
+
+server:
+  port: 9990

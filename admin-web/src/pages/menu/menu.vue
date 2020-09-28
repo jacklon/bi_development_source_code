@@ -177,6 +177,12 @@ export default {
                     //设置当前子菜单为空
                     this.subMenuList=[]
                 }
+            } else
+            {
+                this.subMenuList=[]
+                this.menuList.forEach(firstLevel=>{
+                   firstLevel["firstMenuOpen"]=false;
+                })
             }
             item.firstMenuOpen=!item.firstMenuOpen
         },

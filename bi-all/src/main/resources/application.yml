@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: db, flow, core, admin,flowmanager
+    active: db,ck, flow, core, admin,flowmanager
   messages:
     encoding: UTF-8
   session:

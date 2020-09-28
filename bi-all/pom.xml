@@ -11,6 +11,7 @@
     </parent>
 
     <dependencies>
+
         <dependency>
             <groupId>org.java</groupId>
             <artifactId>bi-db</artifactId>

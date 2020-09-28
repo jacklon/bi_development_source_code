@@ -64,7 +64,7 @@
 
           <el-col :span="8">
             <el-form-item label="代码编码" prop="code">
-              <el-input v-model="dicCodeForm.code" />
+              <el-input v-model="dicCodeForm.code" style="width: 150px" />
             </el-form-item>
           </el-col>
           <el-col :span="8" >
@@ -225,7 +225,7 @@
 
       <div class="op-container" style="text-align: center;margin-top: 15px;margin-bottom: 15px">
 
-        <el-button type="primary" @click="handleEdit" v-preventReClick>保存字典</el-button>
+        <el-button  size="small" type="primary" @click="handleEdit" v-preventReClick>保存字典</el-button>
       </div>
 
     </div>
@@ -273,6 +273,7 @@
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
+  height: 50px;
 }
 .left {
   height: 30px;

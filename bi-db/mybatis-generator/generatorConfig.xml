@@ -42,29 +42,10 @@
         </commentGenerator>
 
         <!--数据库连接信息-->
-<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
-<!--                        connectionURL="jdbc:mysql://127.0.0.1:3307/rdj-erp_200318?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;verifyServerCertificate=false&amp;useSSL=false"-->
-<!--                        userId="rdjerp"-->
-<!--                        password="rdj200318ERP"/>-->
-<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
-<!--                        connectionURL="jdbc:mysql://rm-2zegi47bkhg943qy6.mysql.rds.aliyuncs.com:3306/rdj-erp_200318?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;verifyServerCertificate=false&amp;useSSL=false"-->
-<!--                        userId="rdjerp"-->
-<!--                        password="rdj200318ERP"/>-->
-
-<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
-<!--                        connectionURL="jdbc:mysql://59.110.222.88:3306/rdj-erp_200318?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;verifyServerCertificate=false&amp;useSSL=false"-->
-<!--                        userId="root"-->
-<!--                        password="root"/>-->
-
                 <jdbcConnection driverClass="com.mysql.jdbc.Driver"
                                 connectionURL="jdbc:mysql://127.0.0.1:3306/bi?useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC&amp;verifyServerCertificate=false&amp;useSSL=false"
                                 userId="root"
                                 password="Citic12345"/>
-
-<!--        <jdbcConnection driverClass="com.mysql.jdbc.Driver"-->
-<!--                        connectionURL="jdbc:mysql://123.57.181.101:3306/rdj-erp_200318?useUnicode=true&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true&verifyServerCertificate=false&useSSL=false&allowMultiQueries=true"-->
-<!--                        userId="root"-->
-<!--                        password="zxtMySql007"/>-->
         <javaTypeResolver>
             <property name="useJSR310Types" value="true"/>
         </javaTypeResolver>
@@ -156,21 +137,24 @@
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 
+        <table tableName="bi_data_connection">
+            <generatedKey column="id" sqlStatement="MySql" identity="true"/>
+        </table>
+
+
+
         <!-- 以下是集成时间任务quartz -->
         <table tableName="sys_quartz_task_manage">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
 
 
+<!--        以下是视图-->
+
         <table tableName="view_role_menu">
             <generatedKey column="id" sqlStatement="MySql" identity="true"/>
         </table>
-        <table tableName="view_table_def">
-            <columnOverride column="table_comment" javaType="java.lang.String" jdbcType="VARCHAR" />
-        </table>
-        <table tableName="view_table_field_def">
-            <columnOverride column="column_comment" javaType="java.lang.String" jdbcType="VARCHAR" />
-            <columnOverride column="field_default" javaType="java.lang.String" jdbcType="VARCHAR" />
-        </table>
+
+
     </context>
 </generatorConfiguration>

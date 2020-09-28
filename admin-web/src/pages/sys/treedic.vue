@@ -3,10 +3,10 @@
 
     <!-- 查询和其他操作 -->
     <div class="filter-container">
-      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 200px;" placeholder="请输入代码表名称"/>
-      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
-      <el-button v-permission="['POST /admin/treemain/create']" class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
-      <el-button :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download"
+      <el-input v-model="listQuery.name" clearable class="filter-item" style="width: 200px;margin-right: 10px" placeholder="请输入代码表名称"/>
+      <el-button size="small" class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">查找</el-button>
+      <el-button size="small"  class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">添加</el-button>
+      <el-button size="small" :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download"
                  @click="handleDownload">导出
       </el-button>
     </div>
@@ -35,10 +35,10 @@
       </el-table-column>
       <el-table-column align="center" label="操作" width="300" class-name="small-padding fixed-width">
         <template slot-scope="scope">
-          <el-button v-permission="['POST /admin/treemain/update']" type="primary" size="mini" style="width: 80px" @click="handleUpdate(scope.row)">编辑主表</el-button>
-          <el-button v-permission="['POST /admin/treemain/update']" type="primary" size="mini" style="width: 80px" @click="handleUpdateChildrenNode(scope.row)">编辑节点
+          <el-button   type="primary" size="mini" style="width: 80px" @click="handleUpdate(scope.row)">编辑主表</el-button>
+          <el-button   type="primary" size="mini" style="width: 80px" @click="handleUpdateChildrenNode(scope.row)">编辑节点
           </el-button>
-          <el-button v-permission="['POST /admin/treemain/delete']" type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
+          <el-button   type="danger" size="mini" @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
 
@@ -49,56 +49,58 @@
 
     <!-- 添加或修改代码主表对话框 -->
     <el-dialog :title="textMap[dialogStatus]" :close-on-click-modal="false" v-if="dialogFormVisible" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rulesMain" :model="dataForm" label-width="120px">
-        <el-col :span="12">
-          <el-form-item label="字典名称" prop="name">
-            <el-input style="width: 200px" v-model="dataForm.name"/>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="字典描述" prop="desp">
-            <el-input style="width: 200px" v-model="dataForm.desp"/>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="字典排序值" prop="ordernumber">
-            <el-input style="width: 200px" v-model="dataForm.ordernumber"/>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="是否系统" prop="systemed">
-            <el-radio-group style="width: 200px" v-model="dataForm.systemed">
-              <el-radio :label="true">系统</el-radio>
-              <el-radio :label="false">用户</el-radio>
-            </el-radio-group>
-          </el-form-item>
-        </el-col>
-        <el-col :span="12">
-          <el-form-item label="是否启用" prop="enabled">
-            <el-radio-group style="width: 200px" v-model="dataForm.enabled">
-              <el-radio :label="true">启用</el-radio>
-              <el-radio :label="false">不启用</el-radio>
-            </el-radio-group>
-          </el-form-item>
-        </el-col>
-      </el-form>
-      <div slot="footer" class="dialog-footer">
-        <el-button @click="dialogFormVisible = false">取消</el-button>
-        <el-button v-if="dialogStatus=='create'" type="primary" @click="createData">确定</el-button>
-        <el-button v-else type="primary" @click="updateData">确定</el-button>
-      </div>
+       <el-card>
+         <el-form ref="dataForm" :rules="rulesMain" :model="dataForm" label-width="120px">
+           <el-col :span="12">
+             <el-form-item label="字典名称" prop="name">
+               <el-input style="width: 200px" v-model="dataForm.name"/>
+             </el-form-item>
+           </el-col>
+           <el-col :span="12">
+             <el-form-item label="字典描述" prop="desp">
+               <el-input style="width: 200px" v-model="dataForm.desp"/>
+             </el-form-item>
+           </el-col>
+           <el-col :span="12">
+             <el-form-item label="字典排序值" prop="ordernumber">
+               <el-input style="width: 200px" v-model="dataForm.ordernumber"/>
+             </el-form-item>
+           </el-col>
+           <el-col :span="12">
+             <el-form-item label="是否系统" prop="systemed">
+               <el-radio-group style="width: 200px" v-model="dataForm.systemed">
+                 <el-radio :label="true">系统</el-radio>
+                 <el-radio :label="false">用户</el-radio>
+               </el-radio-group>
+             </el-form-item>
+           </el-col>
+           <el-col :span="12">
+             <el-form-item label="是否启用" prop="enabled">
+               <el-radio-group style="width: 200px" v-model="dataForm.enabled">
+                 <el-radio :label="true">启用</el-radio>
+                 <el-radio :label="false">不启用</el-radio>
+               </el-radio-group>
+             </el-form-item>
+           </el-col>
+         </el-form>
+       </el-card>
+       <div slot="footer" class="dialog-footer">
+         <el-button size="small" @click="dialogFormVisible = false">取消</el-button>
+         <el-button size="small" v-if="dialogStatus=='create'" type="primary" @click="createData">确定</el-button>
+         <el-button size="small" v-else type="primary" @click="updateData">确定</el-button>
+       </div>
     </el-dialog>
 
     <!-- 添加或修改代码子表对话框 -->
-    <el-dialog :title="'树形代码编辑'" style="padding-top: 0px;padding-bottom: 0px" :close-on-click-modal="false"
+    <el-dialog :title="'树形代码编辑'" style="padding-top: 0px;padding-bottom: 0px" width="1024px" :close-on-click-modal="false"
                v-if="dialogNodeVisible"  :visible.sync="dialogNodeVisible">
       <el-container>
 
         <el-aside style="width: 300px;height: 450px">
           <el-card>
             <h3 class="box-title" slot="header" style="padding-top: 0px;padding-bottom: 0px;width: 100%;">
-              <el-button type="primary" icon="plus" @click="newAdd">新增</el-button>
-              <el-button type="danger" icon="delete" @click="batchDelete">批量删除</el-button>
+              <el-button size="small" type="primary" icon="plus" @click="newAdd">新增</el-button>
+              <el-button size="small" type="danger" icon="delete" @click="batchDelete">批量删除</el-button>
             </h3>
             <el-tree v-if="nodeTree"
                      style="height: 290px"
@@ -113,13 +115,13 @@
         </el-aside>
 
         <el-main style="margin: 0px;padding: 0px">
-          <el-card style="width:620px;height:540px;margin: 0px 20px 20px 20px">
+          <el-card style="width:620px;height:500px;margin: 0px 20px 0px 20px">
             <el-form :model="dataNodeForm" :rules="rulesNode" ref="dataNodeForm">
               <el-col :span="12">
                 <el-form-item label="上级节点" :label-width="formLabelWidth">
                   <!--              <el-cascader :options="list" :props="defaultProps" v-model="orgTypeIds" clearable @change="handleDeptChange"></el-cascader>-->
                   <el-cascader class="filter-item" clearable ref="belongClass" :props="defaultCascadeProps"
-                               style="width: 210px;"
+                               style="width: 190px;"
                                :options="nodeTree"
                                v-model="dataNodeForm.parentId" expand-trigger="hover" @change="handleParentNodeChange"/>
                 </el-form-item>
@@ -203,22 +205,23 @@
                   <el-input v-model="dataNodeForm.attr10" auto-complete="off"></el-input>
                 </el-form-item>
               </el-col>
-              <el-col :span="12">
-                <el-form-item label="参与分析" :label-width="formLabelWidth">
-                  <el-radio-group  v-model="dataNodeForm.ifAnalyze">
-                    <el-radio :label="true">是</el-radio>
-                    <el-radio :label="false">否</el-radio>
-                  </el-radio-group>
-                </el-form-item>
-              </el-col>
+<!--              <el-col :span="12">-->
+<!--                <el-form-item label="参与分析" :label-width="formLabelWidth">-->
+<!--                  <el-radio-group  v-model="dataNodeForm.ifAnalyze">-->
+<!--                    <el-radio :label="true">是</el-radio>-->
+<!--                    <el-radio :label="false">否</el-radio>-->
+<!--                  </el-radio-group>-->
+<!--                </el-form-item>-->
+<!--              </el-col>-->
             </el-form>
+          </el-card>
             <div class="op-container" style="text-align: center;margin-top: 15px;margin-bottom: 0px">
-              <el-button type="primary" @click="saveTreeNode" v-text="dataNodeForm.id?'修改':'新增'"></el-button>
-              <el-button type="danger" @click="deleteSelected" icon="delete"
+              <el-button size="small" type="primary" @click="saveTreeNode" v-text="dataNodeForm.id?'修改':'新增'"></el-button>
+              <el-button size="small" type="danger" @click="deleteSelected" icon="delete"
                          v-show="dataNodeForm.id && dataNodeForm.id!=null">删除
               </el-button>
             </div>
-          </el-card>
+
         </el-main>
 
       </el-container>
